@@ -15,9 +15,9 @@ function loadModel(filepath,pos) {
     modelLoader.load(
       filepath,
       function (gltf) {
-        gltf.scene.scale.setX(0.01)
-        gltf.scene.scale.setY(0.01)
-        gltf.scene.scale.setZ(0.01)
+        // gltf.scene.scale.setX(0.1)
+        // gltf.scene.scale.setY(0.1)
+        // gltf.scene.scale.setZ(0.1)
 
         gltf.scene.position.setX(x)
         gltf.scene.position.setY(y)

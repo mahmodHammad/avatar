@@ -12,7 +12,7 @@ const settings = {
   voiceSpeed: 1,
   voicePitch: 1,
   voiceLevel: 1,
-  developmentModel: true,
+  developmentModel: false,
 };
 
 export default settings;
