@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { sceneSetup, scene, changeSceneBackground } from "./setup";
+import { sceneSetup, scene, changeSceneBackground ,takeScreenshot} from "./setup";
 import { startAnimationLoop } from "./Animate";
 
 export default function AC() {
@@ -48,9 +48,11 @@ export default function AC() {
       <button onClick={() => onBGChange(0)}>{`<`}</button>
       <span className="title">{bgsNames[activeBGIndex]}</span>
       <button onClick={() => onBGChange(1)}>{`>`}</button>
+      <button onClick={()=>takeScreenshot(10920,10920)} className="SH">Take SH</button>
     </div>
   );
 }
+
 
 //clean up to prevent memory leak
 //   componentWillUnmount() {

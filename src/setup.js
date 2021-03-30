@@ -4,7 +4,7 @@ import { displayCoards } from "./helpers.js";
 import settings from "./settings.js";
 import Stats from "stats-js";
 import { addItem } from "./sceneItems";
-
+import {saveDataURI,defaultFileName} from "./ScreenShot"
 THREE.Cache.enabled = true;
 
 const stats = new Stats();
@@ -69,7 +69,7 @@ const handleWindowResize = () => {
   height = window.innerHeight;
 
   renderer.setSize(width, height);
-  camera.aspect = width / height;
+  camera.aspect =1;
   camera.updateProjectionMatrix();
 };
 // ----------------------------------------------> setup
@@ -89,4 +89,29 @@ const sceneSetup = (root) => {
   addItem();
 };
 
-export { sceneSetup, scene, controls, render, camera, stats ,changeSceneBackground};
+function takeScreenshot(width, height) {
+  // set camera and renderer to desired screenshot dimension
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+
+  renderer.render(scene, camera, null, false);
+
+  const DataURI = renderer.domElement.toDataURL("image/png");
+
+  // save
+  saveDataURI(defaultFileName(".png"), DataURI);
+
+  // reset to old dimensions by invoking the on window resize function
+   handleWindowResize();
+}
+export {
+  sceneSetup,
+  scene,
+  controls,
+  render,
+  camera,
+  stats,
+  changeSceneBackground,
+  takeScreenshot,
+};
