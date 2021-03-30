@@ -48,7 +48,7 @@ export default function AC() {
       <button onClick={() => onBGChange(0)}>{`<`}</button>
       <span className="title">{bgsNames[activeBGIndex]}</span>
       <button onClick={() => onBGChange(1)}>{`>`}</button>
-      <button onClick={()=>takeScreenshot(10920,10920)} className="SH">Take SH</button>
+      <button onClick={()=>takeScreenshot(2000 ,2000 )} className="SH">Take SH</button>
     </div>
   );
 }
