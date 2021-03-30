@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { sceneSetup, scene } from "./setup";
 import { startAnimationLoop } from "./Animate";
+import AC from "./AvatarChange"
 
 export default function Cat({ handleFullScreen }) {
   const textInput = useRef(null);
@@ -14,6 +15,7 @@ export default function Cat({ handleFullScreen }) {
   return (
     <React.Fragment>
       <div ref={textInput} className="canvas"></div>
+      <AC/>
     </React.Fragment>
   );
 }
