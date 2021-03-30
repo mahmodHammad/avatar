@@ -1,6 +1,6 @@
 const settings = {
   ctrlSpeed: 0.4,
-  quality: 2,
+  quality: 1,
   maxZoom: 1000,
   minZoom: 0.4,
   maxPolarAngle: 4,

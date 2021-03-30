@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { sceneSetup, scene, changeSceneBackground ,takeScreenshot} from "./setup";
-import { startAnimationLoop } from "./Animate";
+
 
 export default function AC() {
   const bgs = {
-    gray: 0xaaaaaa,
-    red: 0xff0000,
-    green: 0x00ff00,
-    blue: 0x0000ff,
     yellow:0xFFEB3B,
+    gray: 0xaaaaaa,
     Green1:0x69F0AE,
     cyan:0x00E5FF,
     Teal:0x1DE9B6,
     Purple:0x651FFF,
     indigo:0x3D5AFE,
     coolRed:0xFF1744,
-    Pink:0xF50057
+    Pink:0xF50057,
+    red: 0xff0000,
+    green: 0x00ff00,
+    blue: 0x0000ff,
   };
   const bgsNames = Object.keys(bgs);
 

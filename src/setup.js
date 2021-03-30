@@ -37,7 +37,7 @@ const camera = new THREE.PerspectiveCamera(
   80000 // far plane
 );
 
-camera.position.set(0, 0, 13);
+camera.position.set(0, 0, 8);
 
 // ----------------------------------------------> controls
 
@@ -63,6 +63,7 @@ function setupControls(speed) {
   // controls.dampingFactor = 0.05;
 
   controls.enableRotate = false;
+  controls.enabled=false
 }
 
 // ----------------------------------------------> resize
