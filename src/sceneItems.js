@@ -9,8 +9,10 @@ var face, hair, cloth
 function addLights() {
   const amplight = new THREE.AmbientLight("#ffffff", 1);
   let lightBack = new THREE.SpotLight(0xffffff, 1);
-  let lightFront = new THREE.SpotLight(0xffffff, 1.3);
-  lightBack.position.set(-10, -1, -7);
+  let lightFront = new THREE.SpotLight(0xffffff, 1);
+  lightBack.castShadow = true
+  lightFront.castShadow = true
+  lightBack.position.set(-10, 0, -7);
   lightFront.position.set(20, 30, 20);
 
   scene.add(amplight);
@@ -41,6 +43,11 @@ const addItem = () => {
       const hair_mask = extractMesh("hair_mask")
       const hat = extractMesh("hat")
       const hat_mask = extractMesh("hat_mask")
+      const tounge = extractMesh("Roundcube006")
+      tounge.material.color = new THREE.Color(0xdd2222)
+      face.material.color = new THREE.Color(0xc58c85)
+      cloth.material.color = new THREE.Color(0x888888)
+      hair.material.color = new THREE.Color(0x3D5AFE)
        
 
       bg.visible = false
