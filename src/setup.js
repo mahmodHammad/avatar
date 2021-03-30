@@ -13,9 +13,8 @@ let width = window.innerWidth;
 let height = window.innerHeight;
 // ----------------------------------------------> render
 const renderer = new THREE.WebGLRenderer({
-  alpha: true,
   powerPreference: "high-performance",
-  antialias: false,
+  antialias: true,
 });
 
 renderer.setPixelRatio(settings.quality);
