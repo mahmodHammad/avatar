@@ -92,3 +92,11 @@ canvas {
   border: none;
   border-radius: 100px;
 }
+
+.SH{
+  /* text-align: center; */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 6px 18px;
+  border-radius: 60px;
+}

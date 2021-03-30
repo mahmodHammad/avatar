@@ -44,6 +44,7 @@ export default function Cat({ title , mesh , colors  }) {
 
 
   return (
+    
     <div className="box">
         <div className="title">{title}</div>
         <div className="change">

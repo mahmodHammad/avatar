@@ -1,6 +1,7 @@
 import React ,{useState}from "react";
 import "./App.css";
 import AvatarChange from "./UI/AvatarChange"
+import BGChange from "./AvatarChange"
 
 // console.log("FUCK",face)
 // console.log("FUCK2",hair)
@@ -47,22 +48,23 @@ gluesetface=setface
 gluesetcloth = setcloth
 
   return (
+      <React.Fragment>
         <div className="l-panel panel">
             {hair!==undefined?<AvatarChange title="Hair Color" mesh={hair}   colors={Colors}/>:null}
-               <AvatarChange title="Face Color" mesh={face}  colors={Colors}/>
-              <AvatarChange title="Cloth Color" mesh={cloth} colors={Colors}/> 
+            {face!==undefined?  <AvatarChange title="Face Color" mesh={face}  colors={Colors}/>:null}
 
         </div>
-        
+         <div className="r-panel panel">
+         {face!==undefined?<AvatarChange title="Cloth Color" mesh={cloth} colors={Colors}/> :null}
+         <BGChange title="Background Color" mesh={cloth} colors={Colors}/> 
+
+        </div> 
+        </React.Fragment>
   );
 }
 
 export  {UI,extract};
-{/* <div className="r-panel panel">
-          <AvatarChange title , mesh , colors={Colors}/>
-          <AvatarChange title , mesh , colors={Colors}/>
-          <AvatarChange title , mesh , colors={Colors}/>
-        </div> */}
+
 
 
 

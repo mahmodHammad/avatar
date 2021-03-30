@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { sceneSetup, scene, changeSceneBackground ,takeScreenshot} from "./setup";
 
 
-export default function AC() {
+export default function AC({ title , mesh , colors  }) {
   const bgs = {
     yellow:0xFFEB3B,
     gray: 0xaaaaaa,
@@ -44,12 +44,21 @@ export default function AC() {
   }
 
   return (
-    <div className="container">
-      <button onClick={() => onBGChange(0)}>{`<`}</button>
-      <span className="title">{bgsNames[activeBGIndex]}</span>
-      <button onClick={() => onBGChange(1)}>{`>`}</button>
-      <button onClick={()=>takeScreenshot(2000 ,2000 )} className="SH">Take SH</button>
+      
+    <div className="box">
+        <div className="title">{title}</div>
+        <div className="change">
+            <button className="l-btn btn" onClick={()=>onBGChange(0)}>{`<`}</button>
+            <span className="center">{bgsNames[activeBGIndex]}</span>
+            <button className="r-btn btn" onClick={()=>onBGChange(1)}>{`>`}</button>
+        </div>
     </div>
+    // <div className="container">
+    //   <button onClick={() => onBGChange(0)}>{`<`}</button>
+    //   <span className="title">{bgsNames[activeBGIndex]}</span>
+    //   <button onClick={() => onBGChange(1)}>{`>`}</button>
+      // <button onClick={()=>takeScreenshot(2000 ,2000 )} className="SH">Take SH</button>
+    // </div>
   );
 }
 

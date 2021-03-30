@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { sceneSetup, scene } from "./setup";
+import { sceneSetup, scene ,takeScreenshot} from "./setup";
 import { startAnimationLoop } from "./Animate";
-import AC from "./AvatarChange"
+// import SH from "./ScreenShoot"
 
 export default function Cat({ handleFullScreen }) {
   const textInput = useRef(null);
@@ -15,7 +15,10 @@ export default function Cat({ handleFullScreen }) {
   return (
     <React.Fragment>
       <div ref={textInput} className="canvas"></div>
-      <AC/>
+     <div className="box">
+
+      <button className="SH" onClick={()=>takeScreenshot(2000 ,2000 )} className="SH">Download image</button>
+</div>
     </React.Fragment>
   );
 }
