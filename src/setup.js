@@ -3,7 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { displayCoards } from "./helpers.js";
 import settings from "./settings.js";
 import Stats from "stats-js";
-import {addItem} from "./sceneItems"
+import { addItem } from "./sceneItems";
 
 THREE.Cache.enabled = true;
 
@@ -24,15 +24,19 @@ function render() {
 }
 // ----------------------------------------------> scene
 const scene = new THREE.Scene();
-// scene.background = new THREE.Color(0xaaaaaa);
+
+function changeSceneBackground(color) {
+  scene.background = new THREE.Color(color);
+}
+changeSceneBackground(0x000000);
 // ----------------------------------------------> camera
 const camera = new THREE.PerspectiveCamera(
   40, // fov = field of view
-  width / height, // aspect ratio
+  1, // aspect ratio
   0.001, // near plane
   80000 // far plane
 );
-camera.position.set(0, 0, 80);
+camera.position.set(0, 0, 10);
 // ----------------------------------------------> controls
 
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -42,7 +46,7 @@ function setupControls(speed) {
   controls.panSpeed = ctrSpeed;
   controls.rotateSpeed = ctrSpeed;
 
-  controls.target = new THREE.Vector3(0, 1, 0);
+  controls.target = new THREE.Vector3(0, 0, 0);
 
   controls.maxDistance = settings.maxZoom;
   controls.minDistance = settings.minZoom;
@@ -53,10 +57,11 @@ function setupControls(speed) {
   controls.autoRotate = settings.autoRotate;
   controls.autoRotateSpeed = settings.autoRotateSpeed;
 
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.05;
-}
+  // controls.enableDamping = true;
+  // controls.dampingFactor = 0.05;
 
+  controls.enableRotate = false;
+}
 
 // ----------------------------------------------> resize
 const handleWindowResize = () => {
@@ -81,16 +86,7 @@ const sceneSetup = (root) => {
     stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
     document.body.appendChild(stats.dom);
   }
-  addItem()
+  addItem();
 };
 
-
-export {
-  sceneSetup,
-  scene,
-  controls,
-  render,
-  camera,
-  stats,
-
-};
+export { sceneSetup, scene, controls, render, camera, stats ,changeSceneBackground};

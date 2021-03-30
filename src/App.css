@@ -1,15 +1,26 @@
+html{
+  height: 100%;
+}
 body {
+  height: 100%;
+
   margin: 0;
   overflow: hidden;
-  background: radial-gradient(circle, #eaeaea 0%, #777 100%);
+  background:#eee;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
-.canvas {
-  background: radial-gradient(circle, #eaeaea 0%, #777 100%);
-}
 
 canvas {
   display: block;
+  width: 66vw !important;
+  height: 66vw !important;
+  background: radial-gradient(circle, #eaeaea 0%, rgb(255, 14, 14) 100%);
+  border-radius: 14px;
+
 }
 
 .icon {
@@ -46,4 +57,17 @@ canvas {
   font-size: 20px;
   text-transform: capitalize;
   line-height: 30px;
+}
+
+
+.container{
+  position: fixed;
+  left: 0;
+  top: 40%;
+  background-color: red;
+  border-radius: 100px;
+  
+}
+button{
+  border-radius: 100px;
 }
