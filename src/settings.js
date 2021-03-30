@@ -1,5 +1,5 @@
 const settings = {
-  ctrlSpeed: 2,
+  ctrlSpeed: 0.4,
   quality: 2,
   maxZoom: 1000,
   minZoom: 0.4,

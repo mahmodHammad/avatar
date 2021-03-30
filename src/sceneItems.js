@@ -25,7 +25,7 @@ const addItem = () => {
       console.log("FFFF",e)
       scene.add(e.scene);
     })
-    loadModel(hat , {x:0,y:1,z:0})
+    loadModel(hat , {x:0,y:-0.2,z:0})
     .then((e) => {
       console.log("FFFF",e)
       scene.add(e.scene);

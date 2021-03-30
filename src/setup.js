@@ -28,21 +28,21 @@ const scene = new THREE.Scene();
 // ----------------------------------------------> camera
 const camera = new THREE.PerspectiveCamera(
   40, // fov = field of view
-  width / height, // aspect ratio
+  1, // aspect ratio
   0.001, // near plane
   80000 // far plane
 );
-camera.position.set(0, 0, 80);
+camera.position.set(0, 0, 13);
 // ----------------------------------------------> controls
 
 const controls = new OrbitControls(camera, renderer.domElement);
 function setupControls(speed) {
   let ctrSpeed = speed || settings.ctrlSpeed;
-  controls.zoomSpeed = ctrSpeed;
+  controls.zoomSpeed = ctrSpeed/2;
   controls.panSpeed = ctrSpeed;
   controls.rotateSpeed = ctrSpeed;
 
-  controls.target = new THREE.Vector3(0, 1, 0);
+  controls.target = new THREE.Vector3(0, 0, 0);
 
   controls.maxDistance = settings.maxZoom;
   controls.minDistance = settings.minZoom;
