@@ -14,18 +14,14 @@ background-color: #eee;
 
 canvas {
   background: radial-gradient(circle, #eaeaea 0%, #777 100%);
-  width: 600px !important;
-  height: 600px  !important;
+  width: 38vw !important;
+  height: 38vw  !important;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-
-  
+  display: block;  
 }
 
-canvas {
-  display: block;
-}
 
 .icon {
   justify-content: right;
@@ -37,13 +33,33 @@ canvas {
 }
 
 /* AVATAR */
+.panel{
+  width:30vw;
+  height: calc( 25vw);
+  position: absolute;
+  display: flex;
+  padding: 100px 0;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column;
+}
+
+.l-panel{
+  left: 0;
+}
+.r-panel{
+  right: 0;
+}
 
 .box{
-  position: fixed;
-  top: 100px;
-  /* background-color: aqua; */
   text-align: center;
-  width: 220px;
+  width: 100%;
+  display: block;
+  margin: 30px 0;
+}
+
+.title{
+  font-weight: bold;
 }
 
 .change{
@@ -54,7 +70,7 @@ canvas {
   background-color: #fff;
   display: inline-block;
   width: 100px  !important;
-  padding: 6px;
+  padding: 8px;
   margin: 0 10px;
   border-radius: 200px;
   font-size: 17px;

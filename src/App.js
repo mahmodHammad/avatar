@@ -6,8 +6,18 @@ function App() {
   return (
     <div>
       <div className="App">
+        <div className="l-panel panel">
+          <AvatarChange/>
+          <AvatarChange/>
+          <AvatarChange/>
+        </div>
+        <div className="r-panel panel">
+          <AvatarChange/>
+          <AvatarChange/>
+          <AvatarChange/>
+        </div>
         <Cat/>
-        <AvatarChange/>
+
       </div>
     </div>
   );
