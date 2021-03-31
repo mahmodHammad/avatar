@@ -16,6 +16,8 @@ const renderer = new THREE.WebGLRenderer({
   powerPreference: "high-performance",
   antialias: true,
 });
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
 
 renderer.setPixelRatio(settings.quality);
 function render() {
