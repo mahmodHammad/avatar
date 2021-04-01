@@ -19,6 +19,8 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+renderer.physicallyCorrectLights = true;
+renderer.outputEncoding =  THREE.sRGBEncoding;
 
 renderer.setPixelRatio(settings.quality);
 // renderer.sortObjects = false;
