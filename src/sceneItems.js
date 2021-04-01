@@ -1,10 +1,10 @@
 import * as THREE from "three";
-import { scene } from "./setup";
+import { scene ,render} from "./setup";
 import { loadModel } from "./ModelLoader";
 import {extract} from "./UI"
 // const hat = require("./Example_all feature.glb").default;
-const earth = require("./Avatar3.glb").default;
-// const earth = require("./model/GLB/Avatar (ALL)_GLB.glb").default;
+// const earth = require("./Avatar3.glb").default;
+const earth = require("./model/GLB/Avatar (ALL)_GLB.glb").default;
 
 var face, hair, cloth
 
@@ -105,6 +105,7 @@ const addItem = () => {
 
       console.log("FFFF",e.scene.children)
       scene.add(e.scene);
+      render()
     })
   addLights();
 };
