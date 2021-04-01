@@ -4,8 +4,8 @@ import { sceneSetup, scene, changeSceneBackground ,takeScreenshot ,render} from 
 
 export default function AC({ title , mesh , colors  }) {
   const bgs = {
-    yellow:0xFFEB3B,
     gray: 0xaaaaaa,
+    yellow:0xFFEB3B,
     Green1:0x69F0AE,
     cyan:0x00E5FF,
     Teal:0x1DE9B6,
