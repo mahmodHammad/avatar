@@ -14,7 +14,7 @@ let height = window.innerHeight;
 // ----------------------------------------------> render
 const renderer = new THREE.WebGLRenderer({
   powerPreference: "high-performance",
-  antialias: true,
+  antialias: false,
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
