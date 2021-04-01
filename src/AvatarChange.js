@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { sceneSetup, scene, changeSceneBackground ,takeScreenshot} from "./setup";
+import { sceneSetup, scene, changeSceneBackground ,takeScreenshot ,render} from "./setup";
 
 
 export default function AC({ title , mesh , colors  }) {
@@ -27,6 +27,7 @@ export default function AC({ title , mesh , colors  }) {
   function syencChangeBackground(index) {
     setactiveBGIndex(index);
     changeSceneBackground(bgs[bgsNames[index]]);
+    render()
   }
 
   function onBGChange(index) {

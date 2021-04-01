@@ -16,9 +16,9 @@ const startAnimationLoop = (e) => {
 
   render();
   
-  controls.update();
+  // controls.update();
   // stats.end();
-  requestID = window.requestAnimationFrame(startAnimationLoop);
+  // requestID = window.requestAnimationFrame(startAnimationLoop);
 };
 
 export {

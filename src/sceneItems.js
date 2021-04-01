@@ -103,7 +103,21 @@ const addItem = () => {
       // hat.visible = false
       // hat_mask.visible = false
 
+
       console.log("FFFF",e.scene.children)
+
+      // overlay start
+      const hat = extractMesh("hat")
+      // const hair = extractMesh("hair")
+
+      hat.material.polygonOffset = true;
+      hat.material.polygonOffsetFactor = -0.1;
+
+
+      hair.material.polygonOffset = true;
+      hair.material.polygonOffsetFactor = -0.1;
+
+
       scene.add(e.scene);
       render()
     })
