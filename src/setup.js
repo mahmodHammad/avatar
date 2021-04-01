@@ -5,14 +5,6 @@ import settings from "./settings.js";
 import Stats from "stats-js";
 import { addItem } from "./sceneItems";
 import {saveDataURI,defaultFileName} from "./ScreenShot"
-
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js';
-import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js';
-let composer1, composer2, fxaaPass;
-
 THREE.Cache.enabled = true;
 
 const stats = new Stats();
@@ -22,8 +14,8 @@ let height = window.innerHeight;
 // ----------------------------------------------> render
 const renderer = new THREE.WebGLRenderer({
   // powerPreference: "high-performance",
-  antialias: false,
-  logarithmicDepthBuffer:false
+  antialias: true,
+  logarithmicDepthBuffer:true
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
@@ -84,10 +76,7 @@ const handleWindowResize = () => {
   renderer.setSize(width, height);
   camera.aspect =1;
   camera.updateProjectionMatrix();
-  composer1.render();
-  // composer2.render();
-  // render()
-
+  render()
 };
 // ----------------------------------------------> setup
 const sceneSetup = (root) => {
@@ -103,7 +92,6 @@ const sceneSetup = (root) => {
     stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
     document.body.appendChild(stats.dom);
   }
-  
   addItem();
 };
 
@@ -123,25 +111,6 @@ function takeScreenshot(width, height) {
   // reset to old dimensions by invoking the on window resize function
    handleWindowResize();
 }
-
-const renderPass = new RenderPass( scene, camera );
-fxaaPass = new ShaderPass( FXAAShader );
-
-				const pixelRatio = renderer.getPixelRatio();
-
-				fxaaPass.material.uniforms[ 'resolution' ].value.x = 1/1024*4;
-				fxaaPass.material.uniforms[ 'resolution' ].value.y = 1/1024*4;
-
-				composer1 = new EffectComposer( renderer );
-				composer1.addPass( renderPass );
-				composer1.addPass( fxaaPass );
-
-        const copyPass = new ShaderPass( CopyShader );
-
-				composer2 = new EffectComposer( renderer );
-				composer2.addPass( renderPass );
-				composer2.addPass( copyPass );
-
 export {
   sceneSetup,
   scene,

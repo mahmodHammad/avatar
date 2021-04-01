@@ -110,8 +110,10 @@ const addItem = () => {
       const hat = extractMesh("hat")
       // const hair = extractMesh("hair")
 
-      hat.material.polygonOffset = true;
-      hat.material.polygonOffsetFactor = -0.1;
+      // hat.material.depthTest = false 
+      // hat.material.polygonOffset = true;
+      hair.material.depthTest = false 
+      // hat.material.polygonOffsetFactor = -0.1;
 
 
       hair.material.polygonOffset = true;
