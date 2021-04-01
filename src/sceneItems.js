@@ -108,8 +108,9 @@ const addItem = () => {
 
       // overlay start
       const hat = extractMesh("hat")
-      // const hair_mask = extractMesh("hair_mask")
-      hair.visible = false
+      const hair_mask = extractMesh("hair_mask")
+      hair_mask.visible =false
+      hat.visible = false
       // const hair = extractMesh("hair")
       console.log("hair",hair)
 
