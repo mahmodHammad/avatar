@@ -110,17 +110,24 @@ const addItem = () => {
       const hat = extractMesh("hat")
       // const hair = extractMesh("hair")
 
-      // hat.material.depthTest = false 
+      hat.material.depthTest = false 
       // hat.material.polygonOffset = true;
-      hair.material.depthTest = false 
+      // hair.material.depthTest = false 
+      console.log(hair.renderOrder)
+      console.log(hat.renderOrder)
+      hair.renderOrder=0
+      hat.renderOrder= 1
+      face.renderOrder = 2
       // hat.material.polygonOffsetFactor = -0.1;
 
 
-      hair.material.polygonOffset = true;
-      hair.material.polygonOffsetFactor = -0.1;
+      // hair.material.polygonOffset = true;
+      // hair.material.polygonOffsetFactor = -0.1;
 
-
-      scene.add(e.scene);
+      scene.add(hair)
+      scene.add(hat)
+      scene.add(face)
+      // scene.add(e.scene);
       render()
     })
   addLights();

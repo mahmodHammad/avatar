@@ -21,6 +21,7 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
 
 renderer.setPixelRatio(settings.quality);
+// renderer.sortObjects = false;
 function render() {
   renderer.render(scene, camera);
 }
