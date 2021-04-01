@@ -10,9 +10,9 @@ var face, hair, cloth
 
 function addLights() {
   const amplight = new THREE.AmbientLight("#ffffff", 0.9);
-  let lightBack = new THREE.SpotLight(0xffffff, 0.6);
-  let lightFront = new THREE.SpotLight(0xffffff, 1);
-  lightBack.castShadow = false
+  let lightBack = new THREE.SpotLight(0xffffff, 0.8);
+  let lightFront = new THREE.SpotLight(0xffffff, 1.6);
+  lightBack.castShadow = true
   lightFront.castShadow = true
 
   // lightFront.shadow.bias = -0.0001;
@@ -20,8 +20,8 @@ function addLights() {
 lightFront.shadow.mapSize.height = 1024*16; // default
 
 
-// lightBack.shadow.mapSize.width = 2048; // default
-// lightBack.shadow.mapSize.height = 2048; // default
+lightBack.shadow.mapSize.width = 2048; // default
+lightBack.shadow.mapSize.height = 2048; // default
 
 
 lightFront.shadow.camera.near = 0.1; // default
@@ -108,26 +108,12 @@ const addItem = () => {
 
       // overlay start
       const hat = extractMesh("hat")
+      // const hair_mask = extractMesh("hair_mask")
+      hair.visible = false
       // const hair = extractMesh("hair")
+      console.log("hair",hair)
 
-      hat.material.depthTest = false 
-      // hat.material.polygonOffset = true;
-      // hair.material.depthTest = false 
-      console.log(hair.renderOrder)
-      console.log(hat.renderOrder)
-      hair.renderOrder=0
-      hat.renderOrder= 1
-      face.renderOrder = 2
-      // hat.material.polygonOffsetFactor = -0.1;
-
-
-      // hair.material.polygonOffset = true;
-      // hair.material.polygonOffsetFactor = -0.1;
-
-      scene.add(hair)
-      scene.add(hat)
-      scene.add(face)
-      // scene.add(e.scene);
+      scene.add(e.scene);
       render()
     })
   addLights();
