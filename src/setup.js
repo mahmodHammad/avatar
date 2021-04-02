@@ -21,8 +21,18 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
 // renderer.physicallyCorrectLights = true;
 renderer.outputEncoding =  THREE.sRGBEncoding;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
+// renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMapping = THREE.CineonToneMapping;
+
+
+// export const NoToneMapping: ToneMapping;
+// export const LinearToneMapping: ToneMapping;
+// export const ReinhardToneMapping: ToneMapping;
+// export const CineonToneMapping: ToneMapping;
+// export const ACESFilmicToneMapping: ToneMapping;
+// renderer.toneMapping = THREE.ReinhardToneMapping;
 renderer.setPixelRatio(settings.quality);
+renderer.toneMappingExposure = 1.2;
 // renderer.sortObjects = false;
 function render() {
   renderer.render(scene, camera);
