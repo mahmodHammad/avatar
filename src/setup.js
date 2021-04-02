@@ -18,7 +18,9 @@ const renderer = new THREE.WebGLRenderer({
   logarithmicDepthBuffer:true
 });
 renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+// renderer.shadowMap.type = THREE.VSMShadowMap; 
+
 // renderer.physicallyCorrectLights = true;
 renderer.outputEncoding =  THREE.sRGBEncoding;
 // renderer.toneMapping = THREE.ACESFilmicToneMapping;

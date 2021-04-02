@@ -18,7 +18,7 @@ function addLights() {
   let hemiLight = new THREE.HemisphereLight(0xffeeb1,0x080820,2)
     hemiLight.position.set(0,1,10)
 
-    lightFront.position.set(1.1, 3, 3.7);
+    lightFront.position.set(2.1, 0, 4.5);
     lightBack.position.set(-10, 9,6);
   
   // lightBack.castShadow = true
@@ -34,7 +34,7 @@ function addLights() {
   const xd = 5
   const zd = 2
   const yd = 5
-  const rightShift = 1
+  const rightShift = 2
   tl.position.set(xd+rightShift,yd,-zd)
   tr.position.set(-xd+rightShift,yd,-zd)
   bl.position.set(xd+rightShift,-yd,-zd)
@@ -48,14 +48,31 @@ scene.add(tl)
 scene.add(tr)
 scene.add(bl)
 scene.add(br)
+
+const dirLight = new THREE.DirectionalLight( 0xFFFFFF, 2 );
+				dirLight.position.set( 2, 0, 4.5 );
+				dirLight.castShadow = true;
+				dirLight.shadow.camera.near = 0.1;
+				dirLight.shadow.camera.far = 500;
+        const lightDist = 17
+				dirLight.shadow.camera.right = lightDist;
+				dirLight.shadow.camera.left = - lightDist;
+				dirLight.shadow.camera.top	= lightDist;
+				dirLight.shadow.camera.bottom = - lightDist;
+				dirLight.shadow.mapSize.width = 512;
+				dirLight.shadow.mapSize.height = 512;
+				dirLight.shadow.radius = 4;
+				// dirLight.shadow.bias = - 0.0005;
+				scene.add( dirLight );
 // scene.add(new THREE.PointLightHelper(tl))
 // scene.add(new THREE.PointLightHelper(tr))
 // scene.add(new THREE.PointLightHelper(bl))
 // scene.add(new THREE.PointLightHelper(br))
 
-  const rectLight = new THREE.RectAreaLight( 0xffffff, 1,  10, 10 );
-  rectLight.position.set( 2, 0, 5 );
-  rectLight.lookAt( 0, 0, 0 );
+// scene.add(new THREE.SpotLightHelper(lightFront,0xff0000))
+  // const rectLight = new THREE.RectAreaLight( 0xffffff, 1,  10, 10 );
+  // rectLight.position.set( 2, 0, 5 );
+  // rectLight.lookAt( 0, 0, 0 );
 
   // scene.add(hemiLight)
 
@@ -76,7 +93,7 @@ lightFront.shadow.camera.near = 0.1; // default
 lightFront.shadow.camera.far = 500; // default
 lightFront.shadow.focus = 1; // default
 // lightFront.shadow.radius =10
-lightFront.shadow.normalBias =0.08
+// lightFront.shadow.normalBias =0.08
 
 
  
@@ -106,8 +123,8 @@ lightFront.shadow.normalBias =0.08
 setLighting()
   // scene.add(amplight);
   // scene.add(lightBack);
-  scene.add(lightFront);
-  scene.add( rectLight ) 
+  // scene.add(lightFront);
+  // scene.add( rectLight ) 
 
   // scene.add( new THREE.SpotLightHelper(lightBack,"#ff00cc") );
   // scene.add( new THREE.SpotLightHelper( lightFront ,"#ccff00"));
@@ -135,7 +152,7 @@ const addItem = () => {
       // //  cloth.castShadow = true; 
       //  cloth.receiveShadow = true;
 
-        face.castShadow = false; 
+        // face.castShadow = true; 
        face.receiveShadow = true;
       // //  face.material.wireframe = true
 

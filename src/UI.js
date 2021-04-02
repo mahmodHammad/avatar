@@ -3,9 +3,6 @@ import "./App.css";
 import AvatarChange from "./UI/AvatarChange"
 import BGChange from "./AvatarChange"
 
-// console.log("FUCK",face)
-// console.log("FUCK2",hair)
-// console.log("FUCK3",cloth)
 
 
 const hairColors={
@@ -74,12 +71,12 @@ gluesetcloth = setcloth
   return (
       <React.Fragment>
         <div className="l-panel panel">
-            {hair!==undefined?<AvatarChange title="Hair Color" mesh={hair}   colors={hairColors}/>:null}
-            {face!==undefined?  <AvatarChange title="Face Color" mesh={face}  colors={faceColors}/>:null}
+            {/* {hair!==undefined?<AvatarChange title="Hair Color" mesh={hair}   colors={hairColors}/>:null}
+            {face!==undefined?  <AvatarChange title="Face Color" mesh={face}  colors={faceColors}/>:null} */}
 
         </div>
          <div className="r-panel panel">
-         {face!==undefined?<AvatarChange title="Cloth Color" mesh={cloth} colors={clothColors}/> :null}
+         {/* {face!==undefined?<AvatarChange title="Cloth Color" mesh={cloth} colors={clothColors}/> :null} */}
          <BGChange title="Background Color" mesh={cloth} colors={Colors}/> 
 
         </div> 
