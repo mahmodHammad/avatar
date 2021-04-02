@@ -6,8 +6,8 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
 // const hat = require("./Example_all feature.glb").default;
 // const earth = require("./Avatar3.glb").default;
-// const earth = require("./model/GLB/Avatar (ALL)_GLB.glb").default;
-const earth = require("./model/f.glb").default;
+const earth = require("./model/GLB/Avatar (ALL)_GLB.glb").default;
+// const earth = require("./model/f.glb").default;
 const hdrbg = require("./model/Texture/courtyard_2k.hdr")
 var face, hair, cloth
 // console.log("HFFHFHHF",hdrbg.default)
@@ -22,17 +22,24 @@ function addLights() {
 
 
   // Backlight:
-  const tl = new THREE.PointLight(0xffffff,1)
-  const tr = new THREE.PointLight(0xffffff,1)
-  const bl = new THREE.PointLight(0xffffff,1)
-  const br = new THREE.PointLight(0xffffff,1)
-  const xd = 4
-  const zd = 8
-  const yd = 6
-  tl.position.set(xd,yd,-zd)
-  tr.position.set(-xd,yd,-zd)
-  bl.position.set(xd,-yd,-zd)
-  br.position.set(-xd,-yd,-zd)
+
+  const tl = new THREE.PointLight(0xffffff,0.4)
+  const tr = new THREE.PointLight(0xffffff,0.4)
+  const bl = new THREE.PointLight(0xffffff,0.4)
+  const br = new THREE.PointLight(0xffffff,0.4)
+  const xd = 5
+  const zd = 2
+  const yd = 5
+  const rightShift = 1
+  tl.position.set(xd+rightShift,yd,-zd)
+  tr.position.set(-xd+rightShift,yd,-zd)
+  bl.position.set(xd+rightShift,-yd,-zd)
+  br.position.set(-xd+rightShift,-yd,-zd)
+  tl.castShadow = true
+  tr.castShadow = true
+  bl.castShadow = true
+  br.castShadow = true
+
 scene.add(tl)
 scene.add(tr)
 scene.add(bl)
@@ -42,17 +49,14 @@ scene.add(new THREE.PointLightHelper(tr))
 scene.add(new THREE.PointLightHelper(bl))
 scene.add(new THREE.PointLightHelper(br))
 
-  const rectLight = new THREE.RectAreaLight( 0xffffff, 2.4,  10, 10 );
-  rectLight.position.set( 0, 0, 5 );
+  const rectLight = new THREE.RectAreaLight( 0xffffff, 6,  10, 10 );
+  rectLight.position.set( 0, 0, -3 );
   rectLight.lookAt( 0, 0, 0 );
-  // scene.add( rectLight )
 
   // scene.add(hemiLight)
 
   
   
-  // const rectLightHelper = new THREE.RectAreaLightHelper( rectLight );
-  // rectLight.add( rectLightHelper );
 
 
   // lightFront.shadow.bias = -0.0001;
@@ -69,7 +73,7 @@ lightFront.shadow.camera.far = 500; // default
 lightFront.shadow.focus = 0.5; // default
 
   lightBack.position.set(-10, 9,6);
-  lightFront.position.set(5, 10, 14);
+  lightFront.position.set(5, 5, 10);
 
 
   function setLighting(){
@@ -94,10 +98,11 @@ lightFront.shadow.focus = 0.5; // default
     pmremGenerator.compileEquirectangularShader();
 
 }
-setLighting()
+// setLighting()
   // scene.add(amplight);
   // scene.add(lightBack);
   // scene.add(lightFront);
+  // scene.add( rectLight ) 
 
   // scene.add( new THREE.SpotLightHelper(lightBack,"#ff00cc") );
   // scene.add( new THREE.SpotLightHelper( lightFront ,"#ccff00"));
@@ -125,7 +130,7 @@ const addItem = () => {
       // //  cloth.castShadow = true; 
       //  cloth.receiveShadow = true;
 
-        // face.castShadow = true; 
+        face.castShadow = false; 
        face.receiveShadow = true;
       // //  face.material.wireframe = true
 
@@ -167,8 +172,7 @@ const addItem = () => {
        
 
       // bg.visible = false
-      // hair_mask.visible = false
-      // hat.visible = false
+   
       // hat_mask.visible = false
 
 
@@ -177,8 +181,8 @@ const addItem = () => {
       // overlay start
       const hat = extractMesh("hat")
       const hair_mask = extractMesh("hair_mask")
-      // hair_mask.visible =false
-      // hat.visible = false
+      hair_mask.visible =false
+      hat.visible = false
       // const hair = extractMesh("hair")
       console.log("hair",hair)
 

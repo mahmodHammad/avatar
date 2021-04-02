@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { scene } from "./setup";
 
 const gridsize = 10;
-const gridDivisions = 100;
+const gridDivisions = 10;
 function displayCoards() {
   scene.add(new THREE.AxesHelper(20));
   scene.add(new THREE.GridHelper(gridsize, gridDivisions, "green", "green"));

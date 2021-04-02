@@ -66,8 +66,8 @@ function setupControls(speed) {
   // controls.enableDamping = true;
   // controls.dampingFactor = 0.05;
 
-  controls.enableRotate = false;
-  controls.enabled=false
+  controls.enableRotate = true;
+  controls.enabled=true 
 }
 
 // ----------------------------------------------> resize
@@ -92,7 +92,7 @@ const sceneSetup = (root) => {
 
   if (settings.developmentModel) {
     stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-    document.body.appendChild(stats.dom);
+    // document.body.appendChild(stats.dom);
   }
   addItem();
 // changeSceneBackground(0x000000);
