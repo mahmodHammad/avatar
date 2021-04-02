@@ -11,14 +11,14 @@ const startAnimationLoop = (e) => {
   //   console.log("EEEE:",e)
   //   material.uniforms.time.value = e/10000;
   // console.log(clock.elapsedTime)
-  stats.begin();
-  generalTime = clock.elapsedTime;
+  // stats.begin();
+  // generalTime = clock.elapsedTime;
 
   render();
   
-  controls.update();
-  stats.end();
-  requestID = window.requestAnimationFrame(startAnimationLoop);
+  // controls.update();
+  // stats.end();
+  // requestID = window.requestAnimationFrame(startAnimationLoop);
 };
 
 export {

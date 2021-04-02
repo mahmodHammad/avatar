@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { sceneSetup, scene, changeSceneBackground ,takeScreenshot} from "./setup";
+import { sceneSetup, scene, changeSceneBackground ,takeScreenshot ,render} from "./setup";
 
 
 export default function AC({ title , mesh , colors  }) {
   const bgs = {
-    yellow:0xFFEB3B,
     gray: 0xaaaaaa,
+    yellow:0xFFEB3B,
     Green1:0x69F0AE,
     cyan:0x00E5FF,
     Teal:0x1DE9B6,
@@ -27,6 +27,7 @@ export default function AC({ title , mesh , colors  }) {
   function syencChangeBackground(index) {
     setactiveBGIndex(index);
     changeSceneBackground(bgs[bgsNames[index]]);
+    render()
   }
 
   function onBGChange(index) {

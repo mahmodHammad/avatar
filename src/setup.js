@@ -13,13 +13,17 @@ let width = window.innerWidth;
 let height = window.innerHeight;
 // ----------------------------------------------> render
 const renderer = new THREE.WebGLRenderer({
-  powerPreference: "high-performance",
-  antialias: false,
+  // powerPreference: "high-performance",
+  antialias: true,
+  logarithmicDepthBuffer:true
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+renderer.physicallyCorrectLights = true;
+renderer.outputEncoding =  THREE.sRGBEncoding;
 
 renderer.setPixelRatio(settings.quality);
+// renderer.sortObjects = false;
 function render() {
   renderer.render(scene, camera);
 }
@@ -75,6 +79,7 @@ const handleWindowResize = () => {
   renderer.setSize(width, height);
   camera.aspect =1;
   camera.updateProjectionMatrix();
+  render()
 };
 // ----------------------------------------------> setup
 const sceneSetup = (root) => {

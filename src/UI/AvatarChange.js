@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import React, { useState,useEffect} from "react";
-import { sceneSetup, scene } from "../setup";
+import { sceneSetup, scene ,render} from "../setup";
 
 function changeColor(mesh,color){
   console.log("Change color", mesh)
@@ -24,6 +24,7 @@ export default function Cat({ title , mesh , colors  }) {
   function syencChangeBackground(index) {
     setactiveBGIndex(index);
     changeColor(mesh,colors[colNames[index]])
+    render()
 
     // changeSceneBackground(colors[colNames[index]]);
   }

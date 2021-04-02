@@ -9,7 +9,9 @@ export default function Cat({ handleFullScreen }) {
   useEffect(() => {
     const canvasTarget = textInput.current;
     sceneSetup(canvasTarget);
-    startAnimationLoop();
+    // setInterval(startAnimationLoop,1000)
+    startAnimationLoop()
+    
   }, []);
 
   return (
