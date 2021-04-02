@@ -21,7 +21,26 @@ function addLights() {
   lightFront.castShadow = true
 
 
-
+  // Backlight:
+  const tl = new THREE.PointLight(0xffffff,1)
+  const tr = new THREE.PointLight(0xffffff,1)
+  const bl = new THREE.PointLight(0xffffff,1)
+  const br = new THREE.PointLight(0xffffff,1)
+  const xd = 4
+  const zd = 8
+  const yd = 6
+  tl.position.set(xd,yd,-zd)
+  tr.position.set(-xd,yd,-zd)
+  bl.position.set(xd,-yd,-zd)
+  br.position.set(-xd,-yd,-zd)
+scene.add(tl)
+scene.add(tr)
+scene.add(bl)
+scene.add(br)
+scene.add(new THREE.PointLightHelper(tl))
+scene.add(new THREE.PointLightHelper(tr))
+scene.add(new THREE.PointLightHelper(bl))
+scene.add(new THREE.PointLightHelper(br))
 
   const rectLight = new THREE.RectAreaLight( 0xffffff, 2.4,  10, 10 );
   rectLight.position.set( 0, 0, 5 );
@@ -75,7 +94,7 @@ lightFront.shadow.focus = 0.5; // default
     pmremGenerator.compileEquirectangularShader();
 
 }
-// setLighting()
+setLighting()
   // scene.add(amplight);
   // scene.add(lightBack);
   // scene.add(lightFront);
