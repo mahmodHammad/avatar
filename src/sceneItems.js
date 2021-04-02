@@ -14,9 +14,13 @@ var face, hair, cloth
 function addLights() {
   const amplight = new THREE.AmbientLight("#ffffff", 0.1);
   let lightBack = new THREE.SpotLight(0xffffff, 1.4);
-  let lightFront = new THREE.SpotLight(0xffffff, 2);
+  let lightFront = new THREE.SpotLight(0xffffff, 1);
   let hemiLight = new THREE.HemisphereLight(0xffeeb1,0x080820,2)
     hemiLight.position.set(0,1,10)
+
+    lightFront.position.set(1, 3, 4);
+    lightBack.position.set(-10, 9,6);
+  
   // lightBack.castShadow = true
   lightFront.castShadow = true
 
@@ -70,11 +74,12 @@ lightBack.shadow.mapSize.height =  1024*16; // default
 
 lightFront.shadow.camera.near = 0.1; // default
 lightFront.shadow.camera.far = 500; // default
-lightFront.shadow.focus = 0.5; // default
+lightFront.shadow.focus = 1; // default
+// lightFront.shadow.radius =10
+lightFront.shadow.normalBias =0.1
 
-  lightBack.position.set(-10, 9,6);
-  lightFront.position.set(5, 5, 10);
 
+ 
 
   function setLighting(){
 
@@ -98,10 +103,10 @@ lightFront.shadow.focus = 0.5; // default
     pmremGenerator.compileEquirectangularShader();
 
 }
-// setLighting()
+setLighting()
   // scene.add(amplight);
   // scene.add(lightBack);
-  // scene.add(lightFront);
+  scene.add(lightFront);
   // scene.add( rectLight ) 
 
   // scene.add( new THREE.SpotLightHelper(lightBack,"#ff00cc") );
