@@ -14,11 +14,11 @@ var face, hair, cloth
 function addLights() {
   const amplight = new THREE.AmbientLight("#ffffff", 0.1);
   let lightBack = new THREE.SpotLight(0xffffff, 1.4);
-  let lightFront = new THREE.SpotLight(0xffffff, 1);
+  let lightFront = new THREE.SpotLight(0xffffff, 0.5);
   let hemiLight = new THREE.HemisphereLight(0xffeeb1,0x080820,2)
     hemiLight.position.set(0,1,10)
 
-    lightFront.position.set(1, 3, 4);
+    lightFront.position.set(1.1, 3, 3.7);
     lightBack.position.set(-10, 9,6);
   
   // lightBack.castShadow = true
@@ -48,13 +48,13 @@ scene.add(tl)
 scene.add(tr)
 scene.add(bl)
 scene.add(br)
-scene.add(new THREE.PointLightHelper(tl))
-scene.add(new THREE.PointLightHelper(tr))
-scene.add(new THREE.PointLightHelper(bl))
-scene.add(new THREE.PointLightHelper(br))
+// scene.add(new THREE.PointLightHelper(tl))
+// scene.add(new THREE.PointLightHelper(tr))
+// scene.add(new THREE.PointLightHelper(bl))
+// scene.add(new THREE.PointLightHelper(br))
 
-  const rectLight = new THREE.RectAreaLight( 0xffffff, 6,  10, 10 );
-  rectLight.position.set( 0, 0, -3 );
+  const rectLight = new THREE.RectAreaLight( 0xffffff, 1,  10, 10 );
+  rectLight.position.set( 2, 0, 5 );
   rectLight.lookAt( 0, 0, 0 );
 
   // scene.add(hemiLight)
@@ -76,7 +76,7 @@ lightFront.shadow.camera.near = 0.1; // default
 lightFront.shadow.camera.far = 500; // default
 lightFront.shadow.focus = 1; // default
 // lightFront.shadow.radius =10
-lightFront.shadow.normalBias =0.1
+lightFront.shadow.normalBias =0.08
 
 
  
@@ -107,7 +107,7 @@ setLighting()
   // scene.add(amplight);
   // scene.add(lightBack);
   scene.add(lightFront);
-  // scene.add( rectLight ) 
+  scene.add( rectLight ) 
 
   // scene.add( new THREE.SpotLightHelper(lightBack,"#ff00cc") );
   // scene.add( new THREE.SpotLightHelper( lightFront ,"#ccff00"));
@@ -186,9 +186,13 @@ const addItem = () => {
       // overlay start
       const hat = extractMesh("hat")
       const hair_mask = extractMesh("hair_mask")
+      hat.castShadow = true
+      hair_mask.castShadow=true
+      hair_mask.receiveShadow = true
       hair_mask.visible =false
       hat.visible = false
       // const hair = extractMesh("hair")
+      // hair.visible = false
       console.log("hair",hair)
 
       scene.add(e.scene);
