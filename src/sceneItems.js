@@ -48,15 +48,31 @@ scene.add(tl)
 scene.add(tr)
 scene.add(bl)
 scene.add(br)
+
+const dirLight = new THREE.DirectionalLight( 0xFFFFFF, 2 );
+				dirLight.position.set( 2, 0, 4.5 );
+				dirLight.castShadow = true;
+				dirLight.shadow.camera.near = 0.1;
+				dirLight.shadow.camera.far = 500;
+        const lightDist = 17
+				dirLight.shadow.camera.right = lightDist;
+				dirLight.shadow.camera.left = - lightDist;
+				dirLight.shadow.camera.top	= lightDist;
+				dirLight.shadow.camera.bottom = - lightDist;
+				dirLight.shadow.mapSize.width = 512;
+				dirLight.shadow.mapSize.height = 512;
+				dirLight.shadow.radius = 4;
+				// dirLight.shadow.bias = - 0.0005;
+				scene.add( dirLight );
 // scene.add(new THREE.PointLightHelper(tl))
 // scene.add(new THREE.PointLightHelper(tr))
 // scene.add(new THREE.PointLightHelper(bl))
 // scene.add(new THREE.PointLightHelper(br))
 
 // scene.add(new THREE.SpotLightHelper(lightFront,0xff0000))
-  const rectLight = new THREE.RectAreaLight( 0xffffff, 1,  10, 10 );
-  rectLight.position.set( 2, 0, 5 );
-  rectLight.lookAt( 0, 0, 0 );
+  // const rectLight = new THREE.RectAreaLight( 0xffffff, 1,  10, 10 );
+  // rectLight.position.set( 2, 0, 5 );
+  // rectLight.lookAt( 0, 0, 0 );
 
   // scene.add(hemiLight)
 
@@ -107,7 +123,7 @@ lightFront.shadow.focus = 1; // default
 setLighting()
   // scene.add(amplight);
   // scene.add(lightBack);
-  scene.add(lightFront);
+  // scene.add(lightFront);
   // scene.add( rectLight ) 
 
   // scene.add( new THREE.SpotLightHelper(lightBack,"#ff00cc") );
