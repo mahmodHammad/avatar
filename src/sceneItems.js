@@ -1,19 +1,22 @@
 import * as THREE from "three";
-import { scene ,render} from "./setup";
+import { scene ,render,renderer} from "./setup";
 import { loadModel } from "./ModelLoader";
 import {extract} from "./UI"
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
+
 // const hat = require("./Example_all feature.glb").default;
 // const earth = require("./Avatar3.glb").default;
 // const earth = require("./model/GLB/Avatar (ALL)_GLB.glb").default;
 const earth = require("./model/f.glb").default;
-
+const hdrbg = require("./model/Texture/courtyard_2k.hdr")
 var face, hair, cloth
-
+// console.log("HFFHFHHF",hdrbg.default)
 function addLights() {
   const amplight = new THREE.AmbientLight("#ffffff", 0.1);
   let lightBack = new THREE.SpotLight(0xffffff, 1.4);
   let lightFront = new THREE.SpotLight(0xffffff, 2);
-  let light3 = new THREE.SpotLight(0xffffff, 0.6);
+  let hemiLight = new THREE.HemisphereLight(0xffeeb1,0x080820,2)
+    hemiLight.position.set(0,1,10)
   // lightBack.castShadow = true
   lightFront.castShadow = true
 
@@ -23,7 +26,9 @@ function addLights() {
   const rectLight = new THREE.RectAreaLight( 0xffffff, 2.4,  10, 10 );
   rectLight.position.set( 0, 0, 5 );
   rectLight.lookAt( 0, 0, 0 );
-  scene.add( rectLight )
+  // scene.add( rectLight )
+
+  // scene.add(hemiLight)
 
   
   
@@ -46,13 +51,34 @@ lightFront.shadow.focus = 0.5; // default
 
   lightBack.position.set(-10, 9,6);
   lightFront.position.set(5, 10, 14);
-  light3.position.set(20, 30, -4);
 
 
-  scene.add(amplight);
-  scene.add(lightBack);
-  scene.add(lightFront);
-  scene.add(light3)
+  function setLighting(){
+
+    
+    new RGBELoader()
+    .setDataType( THREE.UnsignedByteType ) // alt: FloatType, HalfFloatType
+    .load( hdrbg.default, function ( texture, textureData ) {
+      var envMap = pmremGenerator.fromEquirectangular( texture ).texture;
+
+      scene.background = envMap;
+      scene.environment = envMap;
+
+      texture.dispose();
+      pmremGenerator.dispose();
+
+      render();
+
+    } );
+
+    var pmremGenerator = new THREE.PMREMGenerator( renderer );
+    pmremGenerator.compileEquirectangularShader();
+
+}
+setLighting()
+  // scene.add(amplight);
+  // scene.add(lightBack);
+  // scene.add(lightFront);
 
   // scene.add( new THREE.SpotLightHelper(lightBack,"#ff00cc") );
   // scene.add( new THREE.SpotLightHelper( lightFront ,"#ccff00"));

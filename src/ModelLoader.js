@@ -25,7 +25,7 @@ function loadModel(filepath,pos) {
         resolve(gltf);
       },
       function (xhr) {
-        console.log("loading", xhr);
+        // console.log("loading", xhr);
       },
       function (error) {
         console.log("ERROR on loading model", error);
