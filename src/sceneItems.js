@@ -61,7 +61,7 @@ lightFront.shadow.focus = 0.5; // default
     .load( hdrbg.default, function ( texture, textureData ) {
       var envMap = pmremGenerator.fromEquirectangular( texture ).texture;
 
-      scene.background = envMap;
+      // scene.background = envMap;
       scene.environment = envMap;
 
       texture.dispose();
@@ -75,7 +75,7 @@ lightFront.shadow.focus = 0.5; // default
     pmremGenerator.compileEquirectangularShader();
 
 }
-setLighting()
+// setLighting()
   // scene.add(amplight);
   // scene.add(lightBack);
   // scene.add(lightFront);
