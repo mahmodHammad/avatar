@@ -18,8 +18,8 @@ background-color: #eee;
 
 canvas {
   background: radial-gradient(circle, #eaeaea 0%, #777 100%);
-  width: 68vw !important;
-  height: 68vw  !important;
+  width: 40vw !important;
+  height: 40vw  !important;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
@@ -38,11 +38,12 @@ canvas {
 
 /* AVATAR */
 .panel{
-  width:30vw;
-  height: calc( 25vw);
+  /* width:30vw; */
+  /* height: calc( 25vw); */
+  height: 40vw;
   position: absolute;
   display: flex;
-  padding: 100px 0;
+  /* padding: 100px 0; */
   justify-content: center;
   align-content: center;
   flex-flow: column;
@@ -50,9 +51,12 @@ canvas {
 
 .l-panel{
   left: 0;
+  top: 0;
 }
 .r-panel{
   right: 0;
+  width:30vw;
+
 }
 
 .box{
