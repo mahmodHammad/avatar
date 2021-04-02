@@ -19,9 +19,9 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
-renderer.physicallyCorrectLights = true;
+// renderer.physicallyCorrectLights = true;
 renderer.outputEncoding =  THREE.sRGBEncoding;
-
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.setPixelRatio(settings.quality);
 // renderer.sortObjects = false;
 function render() {
@@ -33,7 +33,6 @@ const scene = new THREE.Scene();
 function changeSceneBackground(color) {
   scene.background = new THREE.Color(color);
 }
-changeSceneBackground(0x000000);
 // ----------------------------------------------> camera
 const camera = new THREE.PerspectiveCamera(
   40, // fov = field of view
@@ -96,6 +95,8 @@ const sceneSetup = (root) => {
     document.body.appendChild(stats.dom);
   }
   addItem();
+// changeSceneBackground(0x000000);
+
 };
 
 function takeScreenshot(width, height) {

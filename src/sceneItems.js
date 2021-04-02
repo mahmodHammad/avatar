@@ -14,7 +14,7 @@ function addLights() {
   let lightBack = new THREE.SpotLight(0xffffff, 1.4);
   let lightFront = new THREE.SpotLight(0xffffff, 2);
   let light3 = new THREE.SpotLight(0xffffff, 0.6);
-  lightBack.castShadow = false
+  // lightBack.castShadow = true
   lightFront.castShadow = true
 
 
@@ -24,6 +24,8 @@ function addLights() {
   rectLight.position.set( 0, 0, 5 );
   rectLight.lookAt( 0, 0, 0 );
   scene.add( rectLight )
+
+  
   
   // const rectLightHelper = new THREE.RectAreaLightHelper( rectLight );
   // rectLight.add( rectLightHelper );
@@ -72,7 +74,7 @@ const addItem = () => {
        hair = extractMesh("hair")
        console.log(cloth)
 
-       hair.material.roughness = 0.5
+      //  hair.material.roughness = 0.5
       // cloth.scale.set(1.3,1,1.8)
       // (new THREE.Vector3(2,2,2))
       // //  cloth.castShadow = true; 
@@ -84,8 +86,8 @@ const addItem = () => {
 
        hair.castShadow = true; 
       //  hair.receiveShadow = false;
-face.material.roughness=0.5
-cloth.material.roughness=0.6
+// face.material.roughness=0.5
+// cloth.material.roughness=0.6
 
       // //  sphere.castShadow = true; 
       // //  sphere.receiveShadow = true;
