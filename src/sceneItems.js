@@ -6,7 +6,7 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
 // const hat = require("./Example_all feature.glb").default;
 // const earth = require("./Avatar3.glb").default;
-const earth = require("./model/GLB/Avatar (ALL)_GLB.glb").default;
+const earth = require("./Avatar5.glb").default;
 // const earth = require("./model/f.glb").default;
 const hdrbg = require("./model/Texture/courtyard_2k.hdr")
 var face, hair, cloth
@@ -78,7 +78,7 @@ function setDirectionalLighting(){
 function addLights() {
   // addBacklight()
   setHDRLighting()
-  // setDirectionalLighting()
+  setDirectionalLighting()
 
   const rectLight = new THREE.PointLight( 0xffffff,1 );
   rectLight.position.set( 0, -3, 5 );
@@ -102,11 +102,11 @@ const addItem = () => {
       const hat = extractMesh("hat")
       // const hat_mask = extractMesh("hat_mask")
       // const tounge = extractMesh("Roundcube006")
-      // const nose = extractMesh("nose")
+      const nose = extractMesh("nose")
       // const nech = extractMesh("Cylinder")
       // const ear = extractMesh("Roundcube001")
-      // const eye = extractMesh("eye")
-      // const eyebrow = extractMesh("eyebrow")
+      const eye = extractMesh("eye")
+      const eyebrow = extractMesh("eyebrows")
 
 
       // cloth.castShadow = true; 
@@ -123,7 +123,7 @@ const addItem = () => {
       //  hair.receiveShadow = false;
       // hair.material.color = new THREE.Color(0x3D5AFE)
       
-      // nose.castShadow = true; 
+      nose.castShadow = true; 
 
       // tounge.receiveShadow = true
       // tounge.material.color = new THREE.Color(0xaa5555)
@@ -131,17 +131,28 @@ const addItem = () => {
       // ear.receiveShadow = true
       // nech.receiveShadow =true
       // eyebrow.receiveShadow = true
-      // eyebrow.castShadow = true
-
+      eyebrow.castShadow = true
+      eye.castShadow = true
+      
+    // face.material = new THREE.MeshPhongMaterial( { 
+    //     // color: 0x996633,
+    //     // envMap: envMap, // optional environment map
+    //     specular: 0x050505,
+    //     shininess: 100
+    // } ) 
+    // face.material.roughness = 0
+    // cloth.material.roughness = 0
+    face.material.skinning = true
       // eye.material.color = new THREE.Color(0x333333)
       // eyebrow.material.color = new THREE.Color(0x444444)
       // bg.visible = false
       // hat_mask.visible = false
 
       // overlay start
-      hat.castShadow = false
+      hat.castShadow = true
       hair_mask.castShadow=false
       hair_mask.receiveShadow = true
+      hair_mask.castShadow = true
       hair_mask.visible =false
       hat.visible = false
       hair.visible= false
