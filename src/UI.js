@@ -1,6 +1,8 @@
 import React ,{useState}from "react";
 import "./App.css";
-import AvatarChange from "./UI/AvatarChange"
+import AvatarChangeColor from "./UI/AvatarChangeColor"
+import AvatarChangeVisible from "./UI/AvatarChangeVisible"
+
 import BGChange from "./AvatarChange"
 import {render} from "./setup"
 
@@ -76,23 +78,10 @@ gluesetcloth = setcloth
 gluesethat = sethat
 gluesethair_mask = sethair_mask
 
-const hairs =[
-  {name:"bold",visible:[]},
-  {name:"hair",visible:[hair]},
-  {name:"hat",visible:[hat,hair_mask]}
-]
-function hideAllhair(){
-  hairs.forEach(h=>{
-    h.visible.forEach(hvisible=>{
-      console.log(hvisible.visible)
-      hvisible.visible =false
-      hvisible.castShadow = false
-      hvisible.receiveShadow = false
-      console.log(hvisible.castShadow ,hvisible)
-      render()
-    })
-  })
-  console.log("ALLHAIR",hairs)
+const Allhairs={
+  bold:{visible:[]},
+  hair:{visible:[hair]},
+  hat:{visible:[hat,hair_mask]}
 }
 
   return (
@@ -104,8 +93,8 @@ function hideAllhair(){
         </div>
          <div className="r-panel panel">
          {/* {face!==undefined?<AvatarChange title="Cloth Color" mesh={cloth} colors={clothColors}/> :null} */}
+          <AvatarChangeVisible title="hair style" Allmeshes={Allhairs}/>
          <BGChange title="Background Color" mesh={cloth} colors={Colors}/> 
-            <button onClick={hideAllhair}>hide all</button>
         </div> 
         </React.Fragment>
   );
