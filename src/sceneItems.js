@@ -12,14 +12,14 @@ const hdrbg = require("./model/Texture/courtyard_2k.hdr")
 var face, hair, cloth
 // console.log("HFFHFHHF",hdrbg.default)
 function addLights() {
-  const amplight = new THREE.AmbientLight("#ffffff", 0.1);
-  let lightBack = new THREE.SpotLight(0xffffff, 1.4);
+  // const amplight = new THREE.AmbientLight("#ffffff", 0.1);
+  // let lightBack = new THREE.SpotLight(0xffffff, 1.4);
   let lightFront = new THREE.SpotLight(0xffffff, 0.5);
-  let hemiLight = new THREE.HemisphereLight(0xffeeb1,0x080820,2)
+  let hemiLight = new THREE.HemisphereLight(0xffeeb1,0x080820,1)
     hemiLight.position.set(0,1,10)
 
     lightFront.position.set(2.1, 0, 4.5);
-    lightBack.position.set(-10, 9,6);
+    // lightBack.position.set(-10, 9,6);
   
   // lightBack.castShadow = true
   lightFront.castShadow = true
@@ -28,29 +28,34 @@ function addLights() {
   // Backlight:
 
   const tl = new THREE.PointLight(0xffffff,0.4)
-  const tr = new THREE.PointLight(0xffffff,0.4)
+  const tr = new THREE.PointLight(0xffffff,0.2)
   const bl = new THREE.PointLight(0xffffff,0.4)
-  const br = new THREE.PointLight(0xffffff,0.4)
-  const xd = 5
-  const zd = 2
-  const yd = 5
-  const rightShift = 2
-  tl.position.set(xd+rightShift,yd,-zd)
-  tr.position.set(-xd+rightShift,yd,-zd)
-  bl.position.set(xd+rightShift,-yd,-zd)
-  br.position.set(-xd+rightShift,-yd,-zd)
+  const br = new THREE.PointLight(0xffffff,0.2)
+  const xd = 3
+  const zd = 4
+  const yd = 3
+  const rightShift = 1
+  tl.position.set(xd+rightShift,yd+rightShift,-zd)
+  tr.position.set(-xd+rightShift,yd+rightShift,-zd)
+  bl.position.set(xd+rightShift,-yd+rightShift,-zd)
+  br.position.set(-xd+rightShift,-yd+rightShift,-zd)
   tl.castShadow = true
   tr.castShadow = true
   bl.castShadow = true
   br.castShadow = true
 
-scene.add(tl)
-scene.add(tr)
-scene.add(bl)
-scene.add(br)
+// scene.add(tl)
+// scene.add(tr)
+// scene.add(bl)
+// scene.add(br)
 
-const dirLight = new THREE.DirectionalLight( 0xFFFFFF, 2 );
-				dirLight.position.set( 2, 0, 4.5 );
+// scene.add(new THREE.PointLightHelper(tl))
+// scene.add(new THREE.PointLightHelper(tr))
+// scene.add(new THREE.PointLightHelper(bl))
+// scene.add(new THREE.PointLightHelper(br))
+
+const dirLight = new THREE.DirectionalLight( 0xdddddd, 0.6 );
+				dirLight.position.set( 3, 2.5, 4 );
 				dirLight.castShadow = true;
 				dirLight.shadow.camera.near = 0.1;
 				dirLight.shadow.camera.far = 500;
@@ -59,21 +64,18 @@ const dirLight = new THREE.DirectionalLight( 0xFFFFFF, 2 );
 				dirLight.shadow.camera.left = - lightDist;
 				dirLight.shadow.camera.top	= lightDist;
 				dirLight.shadow.camera.bottom = - lightDist;
-				dirLight.shadow.mapSize.width = 512;
-				dirLight.shadow.mapSize.height = 512;
+				dirLight.shadow.mapSize.width = 512*4;
+				dirLight.shadow.mapSize.height = 512*4;
 				dirLight.shadow.radius = 4;
 				// dirLight.shadow.bias = - 0.0005;
 				scene.add( dirLight );
-// scene.add(new THREE.PointLightHelper(tl))
-// scene.add(new THREE.PointLightHelper(tr))
-// scene.add(new THREE.PointLightHelper(bl))
-// scene.add(new THREE.PointLightHelper(br))
+
 
 // scene.add(new THREE.SpotLightHelper(lightFront,0xff0000))
-  // const rectLight = new THREE.RectAreaLight( 0xffffff, 1,  10, 10 );
-  // rectLight.position.set( 2, 0, 5 );
+  const rectLight = new THREE.PointLight( 0xffffff,1 );
+  rectLight.position.set( 0, -3, 5 );
   // rectLight.lookAt( 0, 0, 0 );
-
+// scene.add(rectLight)
   // scene.add(hemiLight)
 
   
@@ -81,17 +83,13 @@ const dirLight = new THREE.DirectionalLight( 0xFFFFFF, 2 );
 
 
   // lightFront.shadow.bias = -0.0001;
-  lightFront.shadow.mapSize.width = 1024*16; // default
-lightFront.shadow.mapSize.height = 1024*16; // default
+//   lightFront.shadow.mapSize.width = 1024*16; // default
+// lightFront.shadow.mapSize.height = 1024*16; // default
 
 
-lightBack.shadow.mapSize.width =  1024*16; // default
-lightBack.shadow.mapSize.height =  1024*16; // default
-
-
-lightFront.shadow.camera.near = 0.1; // default
-lightFront.shadow.camera.far = 500; // default
-lightFront.shadow.focus = 1; // default
+// lightFront.shadow.camera.near = 0.1; // default
+// lightFront.shadow.camera.far = 500; // default
+// lightFront.shadow.focus = 1; // default
 // lightFront.shadow.radius =10
 // lightFront.shadow.normalBias =0.08
 
@@ -104,8 +102,12 @@ lightFront.shadow.focus = 1; // default
     new RGBELoader()
     .setDataType( THREE.UnsignedByteType ) // alt: FloatType, HalfFloatType
     .load( hdrbg.default, function ( texture, textureData ) {
+//       texture.toneMapping = THREE.CineonToneMapping;
+// texture.toneMappingExposure = 4;
       var envMap = pmremGenerator.fromEquirectangular( texture ).texture;
 
+      console.log("HEUUUUU",envMap)
+      console.log("pmremGenerator",pmremGenerator)
       // scene.background = envMap;
       scene.environment = envMap;
 
@@ -197,6 +199,7 @@ const addItem = () => {
    
       // hat_mask.visible = false
 
+      // face.castShadow = true
 
       console.log("FFFF",e.scene.children)
 
