@@ -142,8 +142,8 @@ const addItem = () => {
       hat.castShadow = false
       hair_mask.castShadow=false
       hair_mask.receiveShadow = true
-      hair_mask.visible =true
-      hat.visible = true
+      hair_mask.visible =false
+      hat.visible = false
       hair.visible= false
       console.log("hair",hair)
 
