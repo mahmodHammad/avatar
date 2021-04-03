@@ -2,7 +2,7 @@ import React ,{useState}from "react";
 import "./App.css";
 import AvatarChange from "./UI/AvatarChange"
 import BGChange from "./AvatarChange"
-
+import {render} from "./setup"
 
 
 const hairColors={
@@ -45,28 +45,55 @@ const Colors ={
 
 };
 
-var gluesethair ,gluesetface,gluesetcloth
+
+
+var gluesethair ,gluesetface,gluesetcloth,gluesethat,gluesethair_mask
 
 function extract(atrr){
     console.log("HEY YOU FUCK",atrr)
     // face = atrr.face
     
-   const {hair,face,cloth} = atrr
+   const {hair,face,cloth,hat,hair_mask} = atrr
     gluesethair(hair)
     gluesetface(face)
     gluesetcloth(cloth)
+    gluesethat(hat)
+    gluesethair_mask(hair_mask)
     // cloth = atrr.cloth
     return atrr
 }
 
 function UI() {
-const [hair, sethair] = useState(null);
-const [face, setface] = useState(null);
-const [cloth, setcloth] = useState(null);
+const [hair, sethair] = useState(undefined);
+const [hat, sethat] = useState(undefined);
+const [face, setface] = useState(undefined);
+const [cloth, setcloth] = useState(undefined);
+const [hair_mask, sethair_mask] = useState(undefined);
 
 gluesethair =sethair
 gluesetface=setface
 gluesetcloth = setcloth
+gluesethat = sethat
+gluesethair_mask = sethair_mask
+
+const hairs =[
+  {name:"bold",visible:[]},
+  {name:"hair",visible:[hair]},
+  {name:"hat",visible:[hat,hair_mask]}
+]
+function hideAllhair(){
+  hairs.forEach(h=>{
+    h.visible.forEach(hvisible=>{
+      console.log(hvisible.visible)
+      hvisible.visible =false
+      hvisible.castShadow = false
+      hvisible.receiveShadow = false
+      console.log(hvisible.castShadow ,hvisible)
+      render()
+    })
+  })
+  console.log("ALLHAIR",hairs)
+}
 
   return (
       <React.Fragment>
@@ -78,7 +105,7 @@ gluesetcloth = setcloth
          <div className="r-panel panel">
          {/* {face!==undefined?<AvatarChange title="Cloth Color" mesh={cloth} colors={clothColors}/> :null} */}
          <BGChange title="Background Color" mesh={cloth} colors={Colors}/> 
-
+            <button onClick={hideAllhair}>hide all</button>
         </div> 
         </React.Fragment>
   );

@@ -13,7 +13,7 @@ let width = window.innerWidth;
 let height = window.innerHeight;
 // ----------------------------------------------> render
 const renderer = new THREE.WebGLRenderer({
-  // powerPreference: "high-performance",
+  powerPreference: "high-performance",
   antialias: true,
   logarithmicDepthBuffer:true
 });
@@ -35,7 +35,6 @@ renderer.toneMappingExposure = 2;
 // export const ACESFilmicToneMapping: ToneMapping;
 // renderer.toneMapping = THREE.ReinhardToneMapping;
 renderer.setPixelRatio(settings.quality);
-// renderer.sortObjects = false;
 function render() {
   renderer.render(scene, camera);
 }
