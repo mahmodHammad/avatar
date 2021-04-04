@@ -26,7 +26,7 @@ function addBacklight(){
     br.position.set(-xd+rightShift,-yd+rightShift,-zd)
 
     // tl.castShadow = true
-    // tr.castShadow = true
+    tr.castShadow = true
     // bl.castShadow = true
     // br.castShadow = true
   

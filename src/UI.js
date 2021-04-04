@@ -68,7 +68,7 @@ function extract(atrr){
 function UI() {
 const [hair, sethair] = useState(undefined);
 const [hat, sethat] = useState(undefined);
-const [face, setface] = useState(undefined);
+const [face, setface] = useState(null);
 const [cloth, setcloth] = useState(undefined);
 const [hair_mask, sethair_mask] = useState(undefined);
 
@@ -87,12 +87,12 @@ const Allhairs={
   return (
       <React.Fragment>
         <div className="l-panel panel">
-            {/* {hair!==undefined?<AvatarChange title="Hair Color" mesh={hair}   colors={hairColors}/>:null}
-            {face!==undefined?  <AvatarChange title="Face Color" mesh={face}  colors={faceColors}/>:null} */}
+             {/* {hair!==undefined?<AvatarChangeColor title="Hair Color" mesh={hair}   colors={hairColors}/>:null} */}
 
         </div>
          <div className="r-panel panel">
-         {/* {face!==undefined?<AvatarChange title="Cloth Color" mesh={cloth} colors={clothColors}/> :null} */}
+         {/* {cloth!==undefined?<AvatarChangeColor title="Cloth Color" mesh={cloth} colors={clothColors}/> :null} */}
+            {face!==undefined?  <AvatarChangeColor title="Face Color" mesh={face}  colors={faceColors}/>:null} 
           <AvatarChangeVisible title="hair style" Allmeshes={Allhairs}/>
          <BGChange title="Background Color" mesh={cloth} colors={Colors}/> 
         </div> 
