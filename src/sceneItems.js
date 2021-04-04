@@ -156,6 +156,7 @@ const addItem = () => {
       hair_mask.visible =false
       hat.visible = false
       hair.visible= false
+
       console.log("hair",hair)
 
       scene.add(e.scene);

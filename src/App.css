@@ -51,7 +51,8 @@ canvas {
 
 .l-panel{
   left: 0;
-  top: 0;
+  width:30vw;
+  /* height: 30vw; */
 }
 .r-panel{
   right: 0;

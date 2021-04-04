@@ -89,9 +89,9 @@ const Allhairs={
         <div className="l-panel panel">
              {/* {hair!==undefined?<AvatarChangeColor title="Hair Color" mesh={hair}   colors={hairColors}/>:null} */}
 
+         {cloth!==undefined?<AvatarChangeColor title="Cloth Color" mesh={cloth} colors={clothColors}/> :null}
         </div>
          <div className="r-panel panel">
-         {/* {cloth!==undefined?<AvatarChangeColor title="Cloth Color" mesh={cloth} colors={clothColors}/> :null} */}
             {face!==undefined?  <AvatarChangeColor title="Face Color" mesh={face}  colors={faceColors}/>:null} 
           <AvatarChangeVisible title="hair style" Allmeshes={Allhairs}/>
          <BGChange title="Background Color" mesh={cloth} colors={Colors}/> 

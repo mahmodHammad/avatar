@@ -14,7 +14,7 @@ function changeColor(mesh,color){
 
 export default function Cat({ title , mesh , colors  }) {
   const colNames = Object.keys(colors);
-
+console.log("FOOOL",mesh)
   const [activeBGIndex, setactiveBGIndex] = useState(0);
   useEffect(() => {
     // changeColor(mesh,colors[colNames[activeBGIndex]])
