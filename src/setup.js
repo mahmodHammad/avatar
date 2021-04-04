@@ -50,16 +50,19 @@ function render() {
 const scene = new THREE.Scene();
 
 function changeSceneBackground(color) {
-  scene.background = new THREE.Color(color);
+BackgroundPlanematerial.color.set(color)
+
+  // scene.background = new THREE.Color(color);
 }
+const BackgroundPlanematerial = new THREE.MeshPhongMaterial( {color: 0xaaaaaa, side: THREE.DoubleSide } );
 function addPlane(){
   const geometry = new THREE.PlaneGeometry( 20, 20, 32 );
-const material = new THREE.MeshPhongMaterial( {color: 0xaaaaaa, side: THREE.DoubleSide } );
-const plane = new THREE.Mesh( geometry, material );
-plane.position.set(0,0,-10)
+const plane = new THREE.Mesh( geometry, BackgroundPlanematerial );
+plane.position.set(0,0,-15)
 scene.add( plane );
 }
 addPlane()
+
 const stats = new Stats();
 // ----------------------------------------------> camera
 const camera = new THREE.PerspectiveCamera(

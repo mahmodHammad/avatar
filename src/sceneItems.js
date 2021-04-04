@@ -14,11 +14,11 @@ var face, hair, cloth
 function addBacklight(){
     const tl = new THREE.PointLight(0xffffff,0.4)
     const bl = new THREE.PointLight(0xffffff,0.4)
-    const tr = new THREE.PointLight(0xffffff,0.8)
+    const tr = new THREE.PointLight(0xffffff,0.15)
     const br = new THREE.PointLight(0xffffff,0.2)
-    const xd = 5
-    const zd = 8
-    const yd = 3
+    const xd = 6
+    const zd = 7
+    const yd = 8
     const rightShift = 1
     tl.position.set(-xd+rightShift,yd+rightShift,-zd)
     tr.position.set(xd+rightShift,yd+rightShift,-zd)
