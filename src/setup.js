@@ -5,7 +5,6 @@ import settings from "./settings.js";
 import Stats from "stats-js";
 import { addItem } from "./sceneItems";
 import {saveDataURI,defaultFileName} from "./ScreenShot"
-import createBackground from "three-vignette-background"
 THREE.Cache.enabled = true;
 
 // var app = createOrbitViewer({
@@ -25,7 +24,6 @@ const renderer = new THREE.WebGLRenderer({
   powerPreference: "high-performance",
   antialias: true,
   logarithmicDepthBuffer:true,
-   alpha: true 
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -52,11 +50,16 @@ function render() {
 const scene = new THREE.Scene();
 
 function changeSceneBackground(color) {
-  // scene.background = new THREE.Color(color);
+  scene.background = new THREE.Color(color);
 }
-var background = createBackground()
-scene.add(background)
-
+function addPlane(){
+  const geometry = new THREE.PlaneGeometry( 20, 20, 32 );
+const material = new THREE.MeshPhongMaterial( {color: 0xaaaaaa, side: THREE.DoubleSide } );
+const plane = new THREE.Mesh( geometry, material );
+plane.position.set(0,0,-10)
+scene.add( plane );
+}
+addPlane()
 const stats = new Stats();
 // ----------------------------------------------> camera
 const camera = new THREE.PerspectiveCamera(
@@ -120,7 +123,7 @@ const sceneSetup = (root) => {
     // document.body.appendChild(stats.dom);
   }
   addItem();
-// changeSceneBackground(0x000000);
+changeSceneBackground(0xaaaaaa);
 
 };
 

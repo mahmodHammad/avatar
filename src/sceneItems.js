@@ -14,26 +14,26 @@ var face, hair, cloth
 function addBacklight(){
     const tl = new THREE.PointLight(0xffffff,0.4)
     const bl = new THREE.PointLight(0xffffff,0.4)
-    const tr = new THREE.PointLight(0xffffff,0.2)
+    const tr = new THREE.PointLight(0xffffff,0.8)
     const br = new THREE.PointLight(0xffffff,0.2)
-    const xd = 3
-    const zd = 4
+    const xd = 5
+    const zd = 8
     const yd = 3
     const rightShift = 1
-    tl.position.set(xd+rightShift,yd+rightShift,-zd)
-    tr.position.set(-xd+rightShift,yd+rightShift,-zd)
+    tl.position.set(-xd+rightShift,yd+rightShift,-zd)
+    tr.position.set(xd+rightShift,yd+rightShift,-zd)
     bl.position.set(xd+rightShift,-yd+rightShift,-zd)
     br.position.set(-xd+rightShift,-yd+rightShift,-zd)
 
-    tl.castShadow = true
-    tr.castShadow = true
-    bl.castShadow = true
-    br.castShadow = true
+    // tl.castShadow = true
+    // tr.castShadow = true
+    // bl.castShadow = true
+    // br.castShadow = true
   
-  scene.add(tl)
+  // scene.add(tl)
   scene.add(tr)
-  scene.add(bl)
-  scene.add(br)
+  // scene.add(bl)
+  // scene.add(br)
 
 // scene.add(new THREE.PointLightHelper(tl))
 // scene.add(new THREE.PointLightHelper(tr))
@@ -76,7 +76,7 @@ function setDirectionalLighting(){
 }
 
 function addLights() {
-  // addBacklight()
+  addBacklight()
   setHDRLighting()
   setDirectionalLighting()
 
