@@ -5,9 +5,18 @@ import settings from "./settings.js";
 import Stats from "stats-js";
 import { addItem } from "./sceneItems";
 import {saveDataURI,defaultFileName} from "./ScreenShot"
+import createBackground from "three-vignette-background"
 THREE.Cache.enabled = true;
 
-const stats = new Stats();
+// var app = createOrbitViewer({
+//   clearColor: 'rgb(40, 40, 40)',
+//   clearAlpha: 1.0,
+//   fov: 55,
+//   position: new THREE.Vector3(0, 2, -2)
+// })
+
+// add a default background
+
 
 let width = window.innerWidth;
 let height = window.innerHeight;
@@ -15,7 +24,8 @@ let height = window.innerHeight;
 const renderer = new THREE.WebGLRenderer({
   powerPreference: "high-performance",
   antialias: true,
-  logarithmicDepthBuffer:true
+  logarithmicDepthBuffer:true,
+   alpha: true 
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -42,8 +52,12 @@ function render() {
 const scene = new THREE.Scene();
 
 function changeSceneBackground(color) {
-  scene.background = new THREE.Color(color);
+  // scene.background = new THREE.Color(color);
 }
+var background = createBackground()
+scene.add(background)
+
+const stats = new Stats();
 // ----------------------------------------------> camera
 const camera = new THREE.PerspectiveCamera(
   40, // fov = field of view
@@ -71,8 +85,8 @@ function setupControls(speed) {
   controls.maxPolarAngle = settings.maxPolarAngle;
   controls.minPolarAngle = settings.minPolarAngle;
 
-  controls.autoRotate = settings.autoRotate;
-  controls.autoRotateSpeed = settings.autoRotateSpeed;
+  // controls.autoRotate = true;
+  // controls.autoRotateSpeed = 2;
 
   // controls.enableDamping = true;
   // controls.dampingFactor = 0.05;

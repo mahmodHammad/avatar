@@ -104,7 +104,7 @@ const addItem = () => {
       // const tounge = extractMesh("Roundcube006")
       const nose = extractMesh("nose")
       // const nech = extractMesh("Cylinder")
-      // const ear = extractMesh("Roundcube001")
+      const ear = extractMesh("ears")
       const eye = extractMesh("eye")
       const eyebrow = extractMesh("eyebrows")
 

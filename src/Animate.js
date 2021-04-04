@@ -14,11 +14,11 @@ const startAnimationLoop = (e) => {
   // stats.begin();
   // generalTime = clock.elapsedTime;
 
-  render();
+  // render();
   
   // controls.update();
   // stats.end();
-  // requestID = window.requestAnimationFrame(startAnimationLoop);
+  requestID = window.requestAnimationFrame(startAnimationLoop);
 };
 
 export {
