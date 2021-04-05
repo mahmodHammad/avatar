@@ -6,7 +6,8 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
 // const hat = require("./Example_all feature.glb").default;
 // const earth = require("./Avatar3.glb").default;
-const earth = require("./Avatar5.glb").default;
+// const earth = require("./Avatar5.glb").default;
+const earth = require("./test.glb").default;
 // const earth = require("./model/f.glb").default;
 const hdrbg = require("./model/Texture/courtyard_2k.hdr")
 var face, hair, cloth
@@ -107,6 +108,7 @@ const addItem = () => {
       const ear = extractMesh("ears")
       const eye = extractMesh("eye")
       const eyebrow = extractMesh("eyebrows")
+      const Sunglasses =extractMesh("Sunglasses_frame_01")
 
 
       // cloth.castShadow = true; 
@@ -115,15 +117,15 @@ const addItem = () => {
 
 
       // face.castShadow = true; 
-      face.receiveShadow = true;
+      // face.receiveShadow = true;
       // face.material.color = new THREE.Color(0xc58c85)
 
-       hair.castShadow = true; 
+      //  hair.castShadow = true; 
       //  hair.material.roughness = 0.5
       //  hair.receiveShadow = false;
       // hair.material.color = new THREE.Color(0x3D5AFE)
       
-      nose.castShadow = true; 
+      // nose.castShadow = true; 
 
       // tounge.receiveShadow = true
       // tounge.material.color = new THREE.Color(0xaa5555)
@@ -131,8 +133,8 @@ const addItem = () => {
       // ear.receiveShadow = true
       // nech.receiveShadow =true
       // eyebrow.receiveShadow = true
-      eyebrow.castShadow = true
-      eye.castShadow = true
+      // eyebrow.castShadow = true
+      // eye.castShadow = true
       
     // face.material = new THREE.MeshPhongMaterial( { 
     //     // color: 0x996633,
@@ -142,21 +144,26 @@ const addItem = () => {
     // } ) 
     // face.material.roughness = 0
     // cloth.material.roughness = 0
-    face.material.skinning = true
+    // face.material.skinning = true
       // eye.material.color = new THREE.Color(0x333333)
       // eyebrow.material.color = new THREE.Color(0x444444)
       // bg.visible = false
       // hat_mask.visible = false
 
       // overlay start
-      hat.castShadow = true
-      hair_mask.castShadow=false
-      hair_mask.receiveShadow = true
-      hair_mask.castShadow = true
-      hair_mask.visible =false
-      hat.visible = false
-      hair.visible= false
-
+      // hat.castShadow = true
+      // hair_mask.castShadow=false
+      // hair_mask.receiveShadow = true
+      // hair_mask.castShadow = true
+      // hair_mask.visible =false
+      // hat.visible = false
+      // hair.visible= false
+      e.scene.traverse(l=>{
+        if(l.isMesh){
+          l.castShadow = true
+          l.receiveShadow = true
+        }
+      })
       console.log("hair",hair)
 
       scene.add(e.scene);

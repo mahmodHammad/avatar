@@ -33,7 +33,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.outputEncoding =  THREE.sRGBEncoding;
 // renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMapping = THREE.CineonToneMapping;
-renderer.toneMappingExposure = 2;
+renderer.toneMappingExposure = 1;
 
 
 // export const NoToneMapping: ToneMapping;
