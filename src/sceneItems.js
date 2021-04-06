@@ -13,9 +13,9 @@ const hdrbg = require("./model/Texture/courtyard_2k.hdr")
 var face, hair, cloth
 
 function addBacklight(){
-    const tl = new THREE.PointLight(0xffffff,0.4)
-    const bl = new THREE.PointLight(0xffffff,0.4)
-    const tr = new THREE.PointLight(0xffffff,0.15)
+    const tl = new THREE.PointLight(0xffffff,0.2)
+    const bl = new THREE.PointLight(0xffffff,0.2)
+    const tr = new THREE.PointLight(0xffffff,0.4)
     const br = new THREE.PointLight(0xffffff,0.2)
     const xd = 6
     const zd = 7
@@ -31,7 +31,7 @@ function addBacklight(){
     // bl.castShadow = true
     // br.castShadow = true
   
-  // scene.add(tl)
+  scene.add(tl)
   scene.add(tr)
   // scene.add(bl)
   // scene.add(br)
@@ -59,12 +59,12 @@ function setHDRLighting(){
 }
 
 function setDirectionalLighting(){
-  const dirLight = new THREE.DirectionalLight( 0xdddddd, 0.6 );
-  dirLight.position.set( 3, 2.5, 4 );
+  const dirLight = new THREE.DirectionalLight( 0xdddddd, 0.4 );
+  dirLight.position.set( 2, 1.8, 4 );
   dirLight.castShadow = true;
   dirLight.shadow.camera.near = 0.1;
   dirLight.shadow.camera.far = 500;
-  const lightDist = 17
+  const lightDist = 20
   dirLight.shadow.camera.right = lightDist;
   dirLight.shadow.camera.left = - lightDist;
   dirLight.shadow.camera.top	= lightDist;
@@ -81,10 +81,10 @@ function addLights() {
   setHDRLighting()
   setDirectionalLighting()
 
-  const rectLight = new THREE.PointLight( 0xffffff,1 );
-  rectLight.position.set( 0, -3, 5 );
+  const rectLight = new THREE.RectAreaLight( 0xffffff,0.2,8,8 );
+  rectLight.position.set( 0, -4, 5 );
   rectLight.lookAt( 0, 0, 0 );
-// scene.add(rectLight)
+scene.add(rectLight)
 }
 
 const addItem = () => {
@@ -94,80 +94,46 @@ const addItem = () => {
         return e.scene.getChildByName(name)
       }
    
-      cloth = extractMesh("cloth")
-       face = extractMesh("face")
-       hair = extractMesh("hair")
-      // const bg  = extractMesh("bg")
-      const hair_mask = extractMesh("hair_mask")
-
-      const hat = extractMesh("hat")
-      // const hat_mask = extractMesh("hat_mask")
-      // const tounge = extractMesh("Roundcube006")
-      const nose = extractMesh("nose")
-      // const nech = extractMesh("Cylinder")
-      const ear = extractMesh("ears")
-      const eye = extractMesh("eye")
-      const eyebrow = extractMesh("eyebrows")
+      const head = extractMesh("Head_01")
+      const nose = extractMesh("Nose_01")
+      const ear = extractMesh("Ears_01")
+      const eye = extractMesh("Eye_01")
       const Sunglasses =extractMesh("Sunglasses_frame_01")
+      const Sunglasses_glass =Sunglasses.getChildByName("Plane001_1")
+      const Sunglasses_frame =Sunglasses.getChildByName("Plane001")
+      const hair = extractMesh("Hair_01")
+      const cloth = extractMesh("Cloth_01")
+      const Mouth = extractMesh("Mouth_01")
+      const face = Mouth.getChildByName("Roundcube006_2")
+      extract({face})
 
 
-      // cloth.castShadow = true; 
-      // cloth.receiveShadow = true;
-      // cloth.material.color = new THREE.Color(0x888888)
+      head.visible = false
+      hair.castShadow = true
+      // Sunglasses_glass.castShadow = true
+      Sunglasses_glass.material.metalness = 1
+      Sunglasses_glass.material.color =new THREE.Color(0x111111)
+      // Sunglasses_glass.material.metalness = 0.8
 
-
-      // face.castShadow = true; 
-      // face.receiveShadow = true;
-      // face.material.color = new THREE.Color(0xc58c85)
-
-      //  hair.castShadow = true; 
-      //  hair.material.roughness = 0.5
-      //  hair.receiveShadow = false;
-      // hair.material.color = new THREE.Color(0x3D5AFE)
+      Sunglasses_frame.castShadow = true
+      ear.castShadow = true
+      nose.castShadow = true
+      eye.castShadow = true
+      cloth.castShadow = true
       
-      // nose.castShadow = true; 
+      console.log(e.scene.children)
 
-      // tounge.receiveShadow = true
-      // tounge.material.color = new THREE.Color(0xaa5555)
-
-      // ear.receiveShadow = true
-      // nech.receiveShadow =true
-      // eyebrow.receiveShadow = true
-      // eyebrow.castShadow = true
-      // eye.castShadow = true
       
-    // face.material = new THREE.MeshPhongMaterial( { 
-    //     // color: 0x996633,
-    //     // envMap: envMap, // optional environment map
-    //     specular: 0x050505,
-    //     shininess: 100
-    // } ) 
-    // face.material.roughness = 0
-    // cloth.material.roughness = 0
-    // face.material.skinning = true
-      // eye.material.color = new THREE.Color(0x333333)
-      // eyebrow.material.color = new THREE.Color(0x444444)
-      // bg.visible = false
-      // hat_mask.visible = false
-
-      // overlay start
-      // hat.castShadow = true
-      // hair_mask.castShadow=false
-      // hair_mask.receiveShadow = true
-      // hair_mask.castShadow = true
-      // hair_mask.visible =false
-      // hat.visible = false
-      // hair.visible= false
       e.scene.traverse(l=>{
-        if(l.isMesh){
-          l.castShadow = true
+        if(l.isMesh ){
           l.receiveShadow = true
         }
       })
-      console.log("hair",hair)
 
+      nose.receiveShadow = false
+      ear.castShadow = false
       scene.add(e.scene);
-      extract({cloth,face,hair,hair_mask,hat})
+      // extract({cloth,face,hair,hair_mask,hat})
 
       render()
     })
