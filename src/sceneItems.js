@@ -116,11 +116,12 @@ const addItem = () => {
       // Sunglasses_glass.material.metalness = 0.8
 
       Sunglasses_frame.castShadow = true
-      ear.castShadow = true
+      ear.receiveShadow = true
       nose.castShadow = true
       eye.castShadow = true
       cloth.castShadow = true
-      
+      face.castShadow = true
+
       console.log(e.scene.children)
 
       
