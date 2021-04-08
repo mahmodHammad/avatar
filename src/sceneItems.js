@@ -7,16 +7,17 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 // const hat = require("./Example_all feature.glb").default;
 // const earth = require("./Avatar3.glb").default;
 // const earth = require("./Avatar5.glb").default;
-const earth = require("./test.glb").default;
+const earth = require("./new.glb").default;
 // const earth = require("./model/f.glb").default;
-const hdrbg = require("./model/Texture/courtyard_2k.hdr")
+// const hdrbg = require("./model/Texture/courtyard_2k.hdr")
+const hdrbg = require("./model/Texture/hdr.hdr")
 var face, hair, cloth
 
 function addBacklight(){
-    const tl = new THREE.PointLight(0xffffff,0.2)
-    const bl = new THREE.PointLight(0xffffff,0.2)
+    const tl = new THREE.PointLight(0xffffff,0.3)
+    const bl = new THREE.PointLight(0xffffff,0.3)
     const tr = new THREE.PointLight(0xffffff,0.4)
-    const br = new THREE.PointLight(0xffffff,0.2)
+    const br = new THREE.PointLight(0xffffff,0.3)
     const xd = 6
     const zd = 7
     const yd = 8
@@ -33,8 +34,8 @@ function addBacklight(){
   
   scene.add(tl)
   scene.add(tr)
-  // scene.add(bl)
-  // scene.add(br)
+  scene.add(bl)
+  scene.add(br)
 
 // scene.add(new THREE.PointLightHelper(tl))
 // scene.add(new THREE.PointLightHelper(tr))
@@ -59,7 +60,7 @@ function setHDRLighting(){
 }
 
 function setDirectionalLighting(){
-  const dirLight = new THREE.DirectionalLight( 0xdddddd, 0.4 );
+  const dirLight = new THREE.DirectionalLight( 0xdddddd, 0.6 );
   dirLight.position.set( 2, 1.8, 4 );
   dirLight.castShadow = true;
   dirLight.shadow.camera.near = 0.1;
@@ -90,37 +91,39 @@ scene.add(rectLight)
 const addItem = () => {
   loadModel(earth , {x:0,y:0,z:0})
     .then((e) => {
+      console.log(e)
       function extractMesh(name){
         return e.scene.getChildByName(name)
       }
    
-      const head = extractMesh("Head_01")
+      const head = extractMesh("Head_01_BASE")
       const nose = extractMesh("Nose_01")
       const ear = extractMesh("Ears_01")
       const eye = extractMesh("Eye_01")
-      const Sunglasses =extractMesh("Sunglasses_frame_01")
-      const Sunglasses_glass =Sunglasses.getChildByName("Plane001_1")
-      const Sunglasses_frame =Sunglasses.getChildByName("Plane001")
+      const Sunglasses =extractMesh("Sunglasses01")
+      const Sunglasses_glass =Sunglasses.getChildByName("Plane002_1")
+      const Sunglasses_frame =Sunglasses.getChildByName("Plane002")
       const hair = extractMesh("Hair_01")
       const cloth = extractMesh("Cloth_01")
-      const Mouth = extractMesh("Mouth_01")
-      const face = Mouth.getChildByName("Roundcube006_2")
+      const Mouth = extractMesh("Head_01_Mouth_01")
+      const face = Mouth.getChildByName("Roundcube021_2")
       extract({face})
 
 
       head.visible = false
       hair.castShadow = true
+      // Sunglasses_glass.visible=false
       // Sunglasses_glass.castShadow = true
       Sunglasses_glass.material.metalness = 1
-      Sunglasses_glass.material.color =new THREE.Color(0x111111)
-      // Sunglasses_glass.material.metalness = 0.8
+      Sunglasses_glass.material.color =new THREE.Color(0xff1111)
+      Sunglasses_glass.material.metalness = 0.8
 
       Sunglasses_frame.castShadow = true
       ear.receiveShadow = true
       nose.castShadow = true
       eye.castShadow = true
       cloth.castShadow = true
-      face.castShadow = true
+      // face.castShadow = true
 
       console.log(e.scene.children)
 
