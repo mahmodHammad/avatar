@@ -22,8 +22,8 @@ let height = window.innerHeight;
 // ----------------------------------------------> render
 const renderer = new THREE.WebGLRenderer({
   powerPreference: "high-performance",
-  antialias: true,
-  logarithmicDepthBuffer:true,
+  // antialias: true,
+  // logarithmicDepthBuffer:true,
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -61,18 +61,18 @@ const plane = new THREE.Mesh( geometry, BackgroundPlanematerial );
 plane.position.set(0,0,-15)
 scene.add( plane );
 }
-addPlane()
+// addPlane()
 
 const stats = new Stats();
 // ----------------------------------------------> camera
 const camera = new THREE.PerspectiveCamera(
-  40, // fov = field of view
+  30, // fov = field of view
   1, // aspect ratio
   0.001, // near plane
   80000 // far plane
 );
 
-camera.position.set(0, 0, 8);
+camera.position.set(0, 0, 12);
 
 // ----------------------------------------------> controls
 
@@ -91,13 +91,14 @@ function setupControls(speed) {
   controls.maxPolarAngle = settings.maxPolarAngle;
   controls.minPolarAngle = settings.minPolarAngle;
 
-  // controls.autoRotate = true;
-  // controls.autoRotateSpeed = 2;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 2;
 
   // controls.enableDamping = true;
   // controls.dampingFactor = 0.05;
 
   controls.enableRotate = true;
+
   controls.enabled=true 
 }
 

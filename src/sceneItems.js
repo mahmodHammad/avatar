@@ -77,14 +77,17 @@ function setDirectionalLighting(){
 }
 
 function addLights() {
-  addBacklight()
-  setHDRLighting()
-  setDirectionalLighting()
+  // addBacklight()
+  // setHDRLighting()
+  // setDirectionalLighting()
 
-  const rectLight = new THREE.RectAreaLight( 0xffffff,0.2,8,8 );
+  const rectLight = new THREE.RectAreaLight( 0xffffff,1,8,8 );
   rectLight.position.set( 0, -4, 5 );
   rectLight.lookAt( 0, 0, 0 );
-scene.add(rectLight)
+// scene.add(rectLight)
+
+const ampLight = new THREE.AmbientLight(0xffffff)
+scene.add(ampLight)
 }
 
 const addItem = () => {
@@ -92,7 +95,6 @@ const addItem = () => {
     .then((e) => {
       console.log("Earth",e)
       scene.add(e.scene)
-
       render()
     })
   addLights();
