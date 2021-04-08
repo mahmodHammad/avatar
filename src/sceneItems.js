@@ -7,7 +7,7 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 // const hat = require("./Example_all feature.glb").default;
 // const earth = require("./Avatar3.glb").default;
 // const earth = require("./Avatar5.glb").default;
-const earth = require("./test.glb").default;
+const earth = require("./earth1.glb").default;
 // const earth = require("./model/f.glb").default;
 const hdrbg = require("./model/Texture/courtyard_2k.hdr")
 var face, hair, cloth
@@ -90,51 +90,8 @@ scene.add(rectLight)
 const addItem = () => {
   loadModel(earth , {x:0,y:0,z:0})
     .then((e) => {
-      function extractMesh(name){
-        return e.scene.getChildByName(name)
-      }
-   
-      const head = extractMesh("Head_01")
-      const nose = extractMesh("Nose_01")
-      const ear = extractMesh("Ears_01")
-      const eye = extractMesh("Eye_01")
-      const Sunglasses =extractMesh("Sunglasses_frame_01")
-      const Sunglasses_glass =Sunglasses.getChildByName("Plane001_1")
-      const Sunglasses_frame =Sunglasses.getChildByName("Plane001")
-      const hair = extractMesh("Hair_01")
-      const cloth = extractMesh("Cloth_01")
-      const Mouth = extractMesh("Mouth_01")
-      const face = Mouth.getChildByName("Roundcube006_2")
-      extract({face})
-
-
-      head.visible = false
-      hair.castShadow = true
-      // Sunglasses_glass.castShadow = true
-      Sunglasses_glass.material.metalness = 1
-      Sunglasses_glass.material.color =new THREE.Color(0x111111)
-      // Sunglasses_glass.material.metalness = 0.8
-
-      Sunglasses_frame.castShadow = true
-      ear.receiveShadow = true
-      nose.castShadow = true
-      eye.castShadow = true
-      cloth.castShadow = true
-      face.castShadow = true
-
-      console.log(e.scene.children)
-
-      
-      e.scene.traverse(l=>{
-        if(l.isMesh ){
-          l.receiveShadow = true
-        }
-      })
-
-      nose.receiveShadow = false
-      ear.castShadow = false
-      scene.add(e.scene);
-      // extract({cloth,face,hair,hair_mask,hat})
+      console.log("Earth",e)
+      scene.add(e.scene)
 
       render()
     })
