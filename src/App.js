@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <div className="App">
-        <UI/>    
+        {/* <UI/>     */}
         <Cat/>
       </div>
     </div>

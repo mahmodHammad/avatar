@@ -17,10 +17,10 @@ export default function Cat({ handleFullScreen }) {
   return (
     <React.Fragment>
       <div ref={textInput} className="canvas"></div>
-     <div className="box">
+     {/* <div className="box">
 
       <button className="SH" onClick={()=>takeScreenshot(1028*2 ,1028*2 )} className="SH">Download image</button>
-</div>
+</div> */}
     </React.Fragment>
   );
 }

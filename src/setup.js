@@ -50,29 +50,18 @@ function render() {
 const scene = new THREE.Scene();
 
 function changeSceneBackground(color) {
-BackgroundPlanematerial.color.set(color)
-
-  // scene.background = new THREE.Color(color);
 }
-const BackgroundPlanematerial = new THREE.MeshPhongMaterial( {color: 0xaaaaaa, side: THREE.DoubleSide } );
-function addPlane(){
-  const geometry = new THREE.PlaneGeometry( 20, 20, 32 );
-const plane = new THREE.Mesh( geometry, BackgroundPlanematerial );
-plane.position.set(0,0,-15)
-scene.add( plane );
-}
-// addPlane()
 
 const stats = new Stats();
 // ----------------------------------------------> camera
 const camera = new THREE.PerspectiveCamera(
   30, // fov = field of view
-  1, // aspect ratio
+  width/height, // aspect ratio
   0.001, // near plane
   80000 // far plane
 );
 
-camera.position.set(0, 0, 12);
+camera.position.set(0, 2, 10);
 
 // ----------------------------------------------> controls
 
@@ -108,7 +97,7 @@ const handleWindowResize = () => {
   height = window.innerHeight;
 
   renderer.setSize(width, height);
-  camera.aspect =1;
+  camera.aspect =width / height;
   camera.updateProjectionMatrix();
   render()
 };

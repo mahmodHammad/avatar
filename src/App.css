@@ -18,9 +18,9 @@ background-color: #eee;
 
 canvas {
   background: radial-gradient(circle, #eaeaea 0%, #777 100%);
-  width: 40vw !important;
-  height: 40vw  !important;
-  border-radius: 20px;
+  /* width: 40vw !important; */
+  /* height: 40vw  !important; */
+  /* border-radius: 20px; */
   justify-content: center;
   align-items: center;
   display: block;  
