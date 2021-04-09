@@ -54,12 +54,12 @@ BackgroundPlanematerial.color.set(color)
 
   // scene.background = new THREE.Color(color);
 }
-const BackgroundPlanematerial = new THREE.MeshPhongMaterial( {color: 0xaaaaaa, side: THREE.DoubleSide } );
+const BackgroundPlanematerial = new THREE.MeshPhongMaterial( {color: 0x333333, side: THREE.DoubleSide } );
 function addPlane(){
   const geometry = new THREE.PlaneGeometry( 20, 20, 32 );
 const plane = new THREE.Mesh( geometry, BackgroundPlanematerial );
 plane.position.set(0,0,-15)
-scene.add( plane );
+// scene.add( plane );
 }
 addPlane()
 
@@ -72,7 +72,7 @@ const camera = new THREE.PerspectiveCamera(
   80000 // far plane
 );
 
-camera.position.set(0, 0, 8);
+camera.position.set(0, 0, 100);
 
 // ----------------------------------------------> controls
 

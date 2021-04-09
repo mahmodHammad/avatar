@@ -10,7 +10,8 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 const earth = require("./new.glb").default;
 // const earth = require("./model/f.glb").default;
 // const hdrbg = require("./model/Texture/courtyard_2k.hdr")
-const hdrbg = require("./model/Texture/hdr.hdr")
+// const hdrbg = require("./model/Texture/hdr.hdr")
+const hdrbg = require("./ff.hdr")
 var face, hair, cloth
 
 function addBacklight(){
@@ -33,9 +34,10 @@ function addBacklight(){
     // br.castShadow = true
   
   scene.add(tl)
-  scene.add(tr)
-  scene.add(bl)
-  scene.add(br)
+  
+  // scene.add(tr)
+  // scene.add(bl)
+  // scene.add(br)
 
 // scene.add(new THREE.PointLightHelper(tl))
 // scene.add(new THREE.PointLightHelper(tr))
@@ -49,7 +51,7 @@ function setHDRLighting(){
   .setDataType( THREE.UnsignedByteType ) // alt: FloatType, HalfFloatType
   .load( hdrbg.default, function ( texture, textureData ) {
     var envMap = pmremGenerator.fromEquirectangular( texture ).texture;
-    // scene.background = envMap;
+    scene.background = envMap;
     scene.environment = envMap;
     texture.dispose();
     pmremGenerator.dispose();
@@ -60,8 +62,8 @@ function setHDRLighting(){
 }
 
 function setDirectionalLighting(){
-  const dirLight = new THREE.DirectionalLight( 0xdddddd, 0.6 );
-  dirLight.position.set( 2, 1.8, 4 );
+  const dirLight = new THREE.DirectionalLight( 0xdddddd, 0.8 );
+  dirLight.position.set( 2, 1.9, 4 );
   dirLight.castShadow = true;
   dirLight.shadow.camera.near = 0.1;
   dirLight.shadow.camera.far = 500;
@@ -78,14 +80,17 @@ function setDirectionalLighting(){
 }
 
 function addLights() {
-  addBacklight()
+  // addBacklight()
   setHDRLighting()
-  setDirectionalLighting()
+  // setDirectionalLighting()
 
-  const rectLight = new THREE.RectAreaLight( 0xffffff,0.2,8,8 );
-  rectLight.position.set( 0, -4, 5 );
+  const rectLight = new THREE.RectAreaLight( 0xffffff,0.8,8,8 );
+  rectLight.position.set( 0, -6, 5 );
   rectLight.lookAt( 0, 0, 0 );
-scene.add(rectLight)
+// scene.add(rectLight)
+
+const amp = new THREE.AmbientLight(0xaaaaaa,0.1)
+// scene.add(amp)
 }
 
 const addItem = () => {
@@ -138,7 +143,10 @@ const addItem = () => {
       ear.castShadow = false
       scene.add(e.scene);
       // extract({cloth,face,hair,hair_mask,hat})
-
+      console.log(e.scene.scale)
+      e.scene.scale.setX(10)
+      e.scene.scale.setY(10)
+      e.scene.scale.setZ(10)
       render()
     })
   addLights();
