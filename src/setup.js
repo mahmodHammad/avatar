@@ -5,6 +5,15 @@ import settings from "./settings.js";
 import Stats from "stats-js";
 import { addItem } from "./sceneItems";
 import {saveDataURI,defaultFileName} from "./ScreenShot"
+// ffffffff
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
+import { SSAOPass } from 'three/examples/jsm/postprocessing/SSAOPass.js';
+// ffffffff
+
+
+
 THREE.Cache.enabled = true;
 
 // var app = createOrbitViewer({
@@ -24,6 +33,7 @@ const renderer = new THREE.WebGLRenderer({
   powerPreference: "high-performance",
   antialias: true,
   logarithmicDepthBuffer:true,
+  preserveDrawingBuffer: true
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -34,7 +44,9 @@ renderer.outputEncoding =  THREE.sRGBEncoding;
 // renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMapping = THREE.CineonToneMapping;
 renderer.toneMappingExposure = 1;
+renderer.setPixelRatio(settings.quality);
 
+const composer = new EffectComposer( renderer );
 
 // export const NoToneMapping: ToneMapping;
 // export const LinearToneMapping: ToneMapping;
@@ -42,10 +54,8 @@ renderer.toneMappingExposure = 1;
 // export const CineonToneMapping: ToneMapping;
 // export const ACESFilmicToneMapping: ToneMapping;
 // renderer.toneMapping = THREE.ReinhardToneMapping;
-renderer.setPixelRatio(settings.quality);
-function render() {
-  renderer.render(scene, camera);
-}
+
+
 // ----------------------------------------------> scene
 const scene = new THREE.Scene();
 
@@ -106,7 +116,8 @@ const handleWindowResize = () => {
   width = window.innerWidth;
   height = window.innerHeight;
 
-  renderer.setSize(width, height);
+  renderer.setSize( width, height );
+				composer.setSize( width, height );
   camera.aspect =1;
   camera.updateProjectionMatrix();
   render()
@@ -114,6 +125,9 @@ const handleWindowResize = () => {
 // ----------------------------------------------> setup
 const sceneSetup = (root) => {
   renderer.setSize(width, height);
+
+  composer.setSize( width, height );
+
   root.appendChild(renderer.domElement);
   window.addEventListener("resize", handleWindowResize);
   if (settings.developmentModel) {
@@ -136,15 +150,33 @@ function takeScreenshot(width, height) {
   camera.updateProjectionMatrix();
   renderer.setSize(width, height);
 
-  renderer.render(scene, camera, null, false);
+  composer.render();
 
-  const DataURI = renderer.domElement.toDataURL("image/png");
-
+  const DataURI = composer.renderer.domElement.toDataURL("image/png");
+  console.log("RENDERER",renderer)
+  console.log("COMPOSER",composer.renderer)
   // save
   saveDataURI(defaultFileName(".png"), DataURI);
 
   // reset to old dimensions by invoking the on window resize function
    handleWindowResize();
+}
+
+const renderPass = new RenderPass( scene, camera );
+composer.addPass( renderPass );
+
+const glitchPass = new GlitchPass();
+// composer.addPass( glitchPass );
+
+const ssaoPass = new SSAOPass( scene, camera, width, height );
+				ssaoPass.kernelRadius = 32;
+				composer.addPass( ssaoPass );
+
+
+function render() {
+  // renderer.render(scene, camera);
+  composer.render();
+
 }
 export {
   sceneSetup,
@@ -156,4 +188,5 @@ export {
   stats,
   changeSceneBackground,
   takeScreenshot,
+  composer
 };
