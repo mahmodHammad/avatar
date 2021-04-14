@@ -51,7 +51,7 @@ function setHDRLighting(){
   .setDataType( THREE.UnsignedByteType ) // alt: FloatType, HalfFloatType
   .load( hdrbg.default, function ( texture, textureData ) {
     var envMap = pmremGenerator.fromEquirectangular( texture ).texture;
-    scene.background = envMap;
+    // scene.background = envMap;
     scene.environment = envMap;
     texture.dispose();
     pmremGenerator.dispose();
@@ -80,18 +80,18 @@ function setDirectionalLighting(){
 }
 
 function addLights() {
-  // addBacklight()
+  addBacklight()
   setHDRLighting()
-  // setDirectionalLighting()
+  setDirectionalLighting()
 
   const rectLight = new THREE.RectAreaLight( 0xffffff,0.8,8,8 );
   rectLight.position.set( 0, -6, 5 );
   rectLight.lookAt( 0, 0, 0 );
-// scene.add(rectLight)
+scene.add(rectLight)
 
 
 const amp = new THREE.AmbientLight(0xaaaaaa,0.5)
-scene.add(amp)
+// scene.add(amp)
 }
 
 const addItem = () => {
@@ -145,9 +145,9 @@ const addItem = () => {
       scene.add(e.scene);
       // extract({cloth,face,hair,hair_mask,hat})
       console.log(e.scene.scale)
-      e.scene.scale.setX(10)
-      e.scene.scale.setY(10)
-      e.scene.scale.setZ(10)
+      // e.scene.scale.setX(10)
+      // e.scene.scale.setY(10)
+      // e.scene.scale.setZ(10)
       render()
     })
   addLights();
