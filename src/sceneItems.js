@@ -89,8 +89,9 @@ function addLights() {
   rectLight.lookAt( 0, 0, 0 );
 // scene.add(rectLight)
 
-const amp = new THREE.AmbientLight(0xaaaaaa,0.1)
-// scene.add(amp)
+
+const amp = new THREE.AmbientLight(0xaaaaaa,0.5)
+scene.add(amp)
 }
 
 const addItem = () => {
@@ -106,7 +107,7 @@ const addItem = () => {
       const ear = extractMesh("Ears_01")
       const eye = extractMesh("Eye_01")
       const Sunglasses =extractMesh("Sunglasses01")
-      const Sunglasses_glass =Sunglasses.getChildByName("Plane002_1")
+      const Sunglasses_glass =Sunglasses.getChildByName("Plane.002_1")
       const Sunglasses_frame =Sunglasses.getChildByName("Plane002")
       const hair = extractMesh("Hair_01")
       const cloth = extractMesh("Cloth_01")

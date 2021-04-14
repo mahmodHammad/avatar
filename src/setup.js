@@ -10,6 +10,7 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
 import { SSAOPass } from 'three/examples/jsm/postprocessing/SSAOPass.js';
+import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 // ffffffff
 // try this 
 // https://codepen.io/discoverthreejs/pen/xxGxBRm
@@ -47,7 +48,6 @@ renderer.toneMapping = THREE.CineonToneMapping;
 renderer.toneMappingExposure = 1;
 renderer.setPixelRatio(settings.quality);
 
-const composer = new EffectComposer( renderer );
 
 // export const NoToneMapping: ToneMapping;
 // export const LinearToneMapping: ToneMapping;
@@ -76,14 +76,8 @@ addPlane()
 
 const stats = new Stats();
 // ----------------------------------------------> camera
-const camera = new THREE.PerspectiveCamera(
-  40, // fov = field of view
-  1, // aspect ratio
-  0.001, // near plane
-  80000 // far plane
-);
-
-camera.position.set(0, 0, 100);
+	const camera = new THREE.PerspectiveCamera( 65, window.innerWidth / window.innerHeight, 0.1, 700 );
+				camera.position.z = 100;
 
 // ----------------------------------------------> controls
 
@@ -145,6 +139,7 @@ changeSceneBackground(0xaaaaaa);
 
 };
 
+
 function takeScreenshot(width, height) {
   // set camera and renderer to desired screenshot dimension
   camera.aspect = width / height;
@@ -163,16 +158,29 @@ function takeScreenshot(width, height) {
    handleWindowResize();
 }
 
-const renderPass = new RenderPass( scene, camera );
-composer.addPass( renderPass );
 
 const glitchPass = new GlitchPass();
 // composer.addPass( glitchPass );
 
-const ssaoPass = new SSAOPass( scene, camera, width, height );
-				ssaoPass.kernelRadius = 2;
-      console.log("ssaoPass",ssaoPass)
-				// composer.addPass( ssaoPass );
+
+
+      const fbox = new THREE.BoxGeometry(10,10,10)
+      const fmesh = new THREE.Mesh(fbox,new THREE.MeshBasicMaterial({color:0xff0000}))
+      scene.add(fmesh)
+
+
+   width = window.innerWidth;
+   height = window.innerHeight;
+
+   const renderPass = new RenderPass( scene, camera );
+   const composer = new EffectComposer( renderer );
+   composer.addPass( renderPass );
+
+
+  const ssaoPass = new SSAOPass( scene, camera, width, height );
+  ssaoPass.kernelRadius = 16;
+  composer.addPass( ssaoPass );
+
         
         // composer.renderTarget1.texture.encoding = THREE.sRGBEncoding;
         // composer.renderTarget2.texture.encoding = THREE.sRGBEncoding;
@@ -182,6 +190,28 @@ function render() {
   composer.render();
 
 }
+
+
+function addGUI(){
+  const gui = new GUI();
+
+				gui.add( ssaoPass, 'output', {
+					'Default': SSAOPass.OUTPUT.Default,
+					'SSAO Only': SSAOPass.OUTPUT.SSAO,
+					'SSAO Only + Blur': SSAOPass.OUTPUT.Blur,
+					'Beauty': SSAOPass.OUTPUT.Beauty,
+					'Depth': SSAOPass.OUTPUT.Depth,
+					'Normal': SSAOPass.OUTPUT.Normal
+				} ).onChange( function ( value ) {
+
+					ssaoPass.output = parseInt(value );
+
+				} );
+				gui.add( ssaoPass, 'kernelRadius' ).min( 0 ).max( 32 );
+				gui.add( ssaoPass, 'minDistance' ).min( 0.001 ).max( 0.02 );
+				gui.add( ssaoPass, 'maxDistance' ).min( 0.01 ).max( 3 );
+}
+addGUI()
 export {
   sceneSetup,
   scene,
