@@ -11,7 +11,8 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
 import { SSAOPass } from 'three/examples/jsm/postprocessing/SSAOPass.js';
 // ffffffff
-
+// try this 
+// https://codepen.io/discoverthreejs/pen/xxGxBRm
 
 
 THREE.Cache.enabled = true;
@@ -169,9 +170,12 @@ const glitchPass = new GlitchPass();
 // composer.addPass( glitchPass );
 
 const ssaoPass = new SSAOPass( scene, camera, width, height );
-				ssaoPass.kernelRadius = 32;
-				composer.addPass( ssaoPass );
-
+				ssaoPass.kernelRadius = 2;
+      console.log("ssaoPass",ssaoPass)
+				// composer.addPass( ssaoPass );
+        
+        // composer.renderTarget1.texture.encoding = THREE.sRGBEncoding;
+        // composer.renderTarget2.texture.encoding = THREE.sRGBEncoding;
 
 function render() {
   // renderer.render(scene, camera);
