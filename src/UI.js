@@ -56,6 +56,7 @@ function extract(atrr){
     // face = atrr.face
     
    const {hair,face,cloth,hat,hair_mask} = atrr
+   console.log("XJKL",face)
     gluesethair(hair)
     gluesetface(face)
     gluesetcloth(cloth)
@@ -93,7 +94,7 @@ const Allhairs={
         </div>
          <div className="r-panel panel">
             {face!==undefined?  <AvatarChangeColor title="Face Color" mesh={face}  colors={faceColors}/>:null} 
-          <AvatarChangeVisible title="hair style" Allmeshes={Allhairs}/>
+          {/* <AvatarChangeVisible title="hair style" Allmeshes={Allhairs}/> */}
          <BGChange title="Background Color" mesh={cloth} colors={Colors}/> 
         </div> 
         </React.Fragment>
